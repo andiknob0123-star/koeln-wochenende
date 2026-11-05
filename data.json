@@ -214,9 +214,9 @@
       "title": "Trash McFly im Herbrand's",
       "tag": "club",
       "verdict": "drin",
-      "price": "9,90 € Student, bis 18 € Abendkasse",
-      "note": "Ehrenfeld, 22:30 bis 05:00 Uhr. Große Party mit guter Stimmung. Alter ab 16 und Muttizettel noch beim Club bestätigen lassen.",
-      "link": ""
+      "price": "ab 9,90 € Student / 12,90 € sehr früh, bis 18 € Abendkasse",
+      "note": "Herbrand's, Herbrandstraße 21, Ehrenfeld. Einlass laut Ticketseite ab 21:30 Uhr, Ende 05:00 Uhr. Unbestätigt: Ein Mindestalter oder ob Muttizettel akzeptiert werden, steht nirgends öffentlich. Erst nach Zusage vom Club Tickets kaufen.",
+      "link": "https://trashmcfly.de/termine/"
     },
     {
       "id": "i-02",
@@ -224,8 +224,8 @@
       "title": "Veedel Club: Y2K x Easy",
       "tag": "club",
       "verdict": "pruefen",
-      "price": "Bis 0:00 Uhr frei",
-      "note": "Ab 23:00 Uhr, in der Nähe vom Barbarossaplatz. Günstigste Option. Altersgrenze beim Club erfragen.",
+      "price": "Bis 0:00 Uhr frei, danach 0 bis 10 €",
+      "note": "Luxemburger Straße 37, 90er/00er-Party ab 23:00 Uhr, zu Fuß vom Hotel. Der Club schreibt nur, dass das Mindestalter je nach Veranstaltung wechselt. Für den 7.11. unbestätigt.",
       "link": ""
     },
     {
@@ -265,7 +265,7 @@
       "tag": "markt",
       "verdict": "pruefen",
       "price": "",
-      "note": "Für den 7. und 8. Nov nichts Bestätigtes gefunden. Alternativen: Moonlight Market in Ehrenfeld am Sa ab 17:00 Uhr (Pattenhalle) und Mädelsflohmarkt in Wahn am So ab 11:00 Uhr (4 €), aber weit draußen.",
+      "note": "Für den 7. und 8. Nov nichts Bestätigtes gefunden. Mädelsflohmarkt in Wahn am So ab 11:00 Uhr (4 €) ist weit draußen. Moonlight Market siehe eigene Idee.",
       "link": ""
     },
     {
@@ -275,7 +275,7 @@
       "tag": "kultur",
       "verdict": "pruefen",
       "price": "34 € Tageskarte, 29 € ermäßigt",
-      "note": "5. bis 8. Nov in der Koelnmesse. Sa 11 bis 19 Uhr, So 11 bis 18 Uhr. Bahn bis Messe/Deutz (Linien 1, 9, 3, 4). Für das Budget teuer und kollidiert mit der Museumsnacht.",
+      "note": "5. bis 8. Nov in der Koelnmesse (Bahn bis Messe/Deutz). Neu: Laut koeln.de ist die Art Cologne am 7.11. als „Museum auf Zeit“ Teil der Museumsnacht, von 16 bis 19 Uhr mit dem Museumsnacht-Ticket. Unbestätigt, ob das Ticket schon ab 16 Uhr gilt. Einzeln 34 € (ermäßigt 29 €), zu teuer.",
       "link": ""
     },
     {
@@ -297,19 +297,109 @@
       "price": "Preis bei Reservierung erfragen",
       "note": "Moselstraße 44, 4 Bahnen. Mehr Fun-Faktor, aber weniger Platz als West Bowling.",
       "link": ""
+    },
+    {
+      "id": "i-10",
+      "created": 10,
+      "title": "Museumsnacht: Ticket gilt als Fahrschein",
+      "tag": "kultur",
+      "verdict": "drin",
+      "price": "20 €, ermäßigt 10 € (Schüler, Studenten)",
+      "note": "Laut koelner-museumsnacht.de ist ein VRS-Ticket für An- und Abreise enthalten. Dann reicht am Samstagabend das Museumsnacht-Ticket für Bus und Bahn. Eine Quelle nennt ermäßigt 15 € statt 10 €. Online kaufen, Ausweis mitnehmen.",
+      "link": "https://koelner-museumsnacht.de/tickets/"
+    },
+    {
+      "id": "i-11",
+      "created": 11,
+      "title": "AYCD – All You Can Dance im Herbrand's",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "Freier Eintritt",
+      "note": "Sa 7.11., Club-Bereich im Herbrand's, gemischte Musik. Altersregel unklar. Nicht neu geprüft.",
+      "link": ""
+    },
+    {
+      "id": "i-12",
+      "created": 12,
+      "title": "Das Ding",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "Günstig",
+      "note": "Eher kleiner Studentenclub mit Pop und Mitsing-Hits. Programm und Altersregel für den 7.11. nicht geprüft.",
+      "link": ""
+    },
+    {
+      "id": "i-13",
+      "created": 13,
+      "title": "Lasertag, Escape Room oder Trampolinhalle",
+      "tag": "action",
+      "verdict": "pruefen",
+      "price": "",
+      "note": "Alternative zum Bowling. Fürs Budget passt nur eine Aktivität. Konkrete Anbieter und Preise nicht geprüft.",
+      "link": ""
+    },
+    {
+      "id": "i-14",
+      "created": 14,
+      "title": "Dom mit Turmbesteigung",
+      "tag": "kultur",
+      "verdict": "pruefen",
+      "price": "Preis vor Ort prüfen",
+      "note": "Würde am Freitag zur Altstadt passen. Preis und Öffnungszeit nicht geprüft.",
+      "link": ""
+    },
+    {
+      "id": "i-15",
+      "created": 15,
+      "title": "Belgisches Viertel",
+      "tag": "markt",
+      "verdict": "pruefen",
+      "price": "kostenlos",
+      "note": "Bummeln und Shoppen, liegt nah am Hotel und an den Ringen.",
+      "link": ""
+    },
+    {
+      "id": "i-16",
+      "created": 16,
+      "title": "Moonlight Market in der Pattenhalle",
+      "tag": "markt",
+      "verdict": "pruefen",
+      "price": "",
+      "note": "Ehrenfeld, Sa 7.11. ab 17:00 Uhr. Kollidiert mit der Museumsnacht. Nicht neu geprüft.",
+      "link": ""
+    },
+    {
+      "id": "i-17",
+      "created": 17,
+      "title": "Günstig essen im Kwartier Latäng",
+      "tag": "essen",
+      "verdict": "drin",
+      "price": "ca. 5 bis 10 €",
+      "note": "Habibi: Falafel-Wrap unter 5 €. Ferkulum: Gyros-Pita unter 8 €, am Wochenende bis 4 Uhr. Borsalino: Pasta unter 10 €. Preise aus Magazin-Artikeln, können sich geändert haben.",
+      "link": ""
+    },
+    {
+      "id": "i-18",
+      "created": 18,
+      "title": "Bars im Kwartier Latäng",
+      "tag": "essen",
+      "verdict": "drin",
+      "price": "",
+      "note": "Gilbert's Pinte (Engelbätstraße, älteste Studi-Kneipe), Bei Oma Kleinmann (Zülpicher Straße, Kult-Eckkneipe), Der Stiefel (Eckkneipe), Rosebud (Cocktailbar). Preise nicht geprüft. Unter 18: keine Spirituosen.",
+      "link": ""
     }
   ],
   "todos": [
     {
       "id": "t-01",
       "created": 1,
-      "text": "Club anrufen: ab 16 und Muttizettel okay? (Trash McFly, Veedel Club, Helios37)",
+      "text": "Clubs auf Instagram oder per Telefon fragen: Einlass ab 16 mit Muttizettel? (Trash McFly, Veedel Club, Helios37, AYCD). Erst nach Zusage Tickets kaufen",
       "done": false
     },
     {
       "id": "t-02",
       "created": 2,
-      "text": "Hotel fragen: Parkplatz oder Rabatt für die Tiefgarage Rotonda",
+      "text": "Parken: Hotel nach Rabatt fragen, Tagespreis der Tiefgarage Rotonda vor Ort prüfen oder ampido-Stellplatz „Parken im Pantaleonsviertel“ reservieren",
       "done": false
     },
     {
@@ -327,7 +417,7 @@
     {
       "id": "t-05",
       "created": 5,
-      "text": "Bowling: West Bowling oder City-Bowling? Bahn reservieren",
+      "text": "Bowling: West Bowling (Tel. laut Verzeichnis 0221 95424411) oder City-Bowling (0221 239275)? Preis erfragen und Bahn reservieren",
       "done": false
     },
     {
@@ -339,9 +429,22 @@
     {
       "id": "t-07",
       "created": 7,
-      "text": "KVB 24-Stunden-Ticket für 5 Personen in der App kaufen",
+      "text": "KVB 24-Stunden-Ticket für 5 Personen (laut VRS-Flyer 2026: 14,30 €) am Freitag kaufen. Gilt bis Samstagnachmittag, abends gilt das Museumsnacht-Ticket",
+      "done": false
+    },
+    {
+      "id": "t-08",
+      "created": 8,
+      "text": "Museumsnacht-Tickets online kaufen (ermäßigt nur mit Schüler- oder Studentenausweis)",
       "done": false
     }
   ],
-  "notes": []
+  "notes": [
+    {
+      "id": "c-01",
+      "from": "claude",
+      "created": "2026-11-05T19:45:00+01:00",
+      "text": "Ich habe Ideen und offene Fragen aktualisiert. Den Zeitplan habe ich noch nicht geändert. Meine Vorschläge dazu stehen im Chat. Unbestätigt sind vor allem: Altersregeln aller Clubs, Bowling-Preise, Parkpreis Rotonda und der genaue Preis der KVB-Tickets."
+    }
+  ]
 }
