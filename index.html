@@ -83,10 +83,6 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .card a.btn-route { color: var(--accent-ink); font-size: 15px; }
 .place { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; min-width: 0; }
 .link-sm, .card a.link-sm { font-size: 13px; color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
-.vote { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
-.vbtn { min-height: 40px; min-width: 60px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg); font-size: 15px; }
-.vbtn.on { border-color: var(--accent); background: var(--soft); }
-.vnames { font-size: 12px; color: var(--muted); flex-basis: 100%; overflow-wrap: anywhere; }
 
 .tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--line); }
 .tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 2px 9px; min-height: 44px; font-weight: 600; font-size: 14px; color: var(--muted); }
@@ -220,7 +216,7 @@ textarea { min-height: 96px; resize: vertical; }
   var TAG2CAT = { club: "club", action: "action", markt: "stadt", kultur: "kultur", essen: "essen" };
   var VERDICTS = { drin: "Im Rennen", pruefen: "Noch prüfen", raus: "Raus" };
   var COLS = ["plan", "ideas", "todos", "notes", "shop"];
-  var LS_TOKEN = "kw-token", LS_CACHE = "kw-cache", LS_SHIFT = "kw-shift", LS_NAME = "kw-name";
+  var LS_TOKEN = "kw-token", LS_CACHE = "kw-cache", LS_SHIFT = "kw-shift";
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
@@ -642,14 +638,6 @@ textarea { min-height: 96px; resize: vertical; }
   /* Ideen */
   function viewIdeen() {
     var out = [];
-    var name = myName();
-    out.push(h("div", { class: "card" },
-      h("p", { class: "note" }, canEdit()
-        ? "Tippe 👍 oder 👎, um abzustimmen. Stimmen, die deine Freunde dir schicken, trägst du mit „Stimme für jemand anderen“ ein."
-        : "Tippe 👍 oder 👎. Deine Stimme geht als Nachricht an den Planer, der sie in die App einträgt."),
-      h("div", { class: "actions" },
-        h("span", { class: "note" }, name ? "Du stimmst ab als " + name + "." : "Noch kein Name auf diesem Gerät."),
-        h("button", { class: "link", type: "button", onclick: function () { askName(function () { render(); }); } }, name ? "Name ändern" : "Name eintragen"))));
     if (!state.data.ideas.length) out.push(h("div", { class: "empty" }, "Noch keine Ideen gesammelt."));
     ["drin", "pruefen", "raus"].forEach(function (v) {
       var list = state.data.ideas.filter(function (i) { return (i.verdict || "pruefen") === v; }).sort(function (a, b) { return (a.created || 0) - (b.created || 0); });
@@ -671,81 +659,11 @@ textarea { min-height: 96px; resize: vertical; }
       it.note ? h("p", { class: "note" }, it.note) : null,
       link ? h("a", { href: link, target: "_blank", rel: "noopener" }, "Mehr dazu") : null,
       routeBox(it.place),
-      voteBox(it),
       canEdit() ? h("div", { class: "actions" },
         it.verdict !== "raus" ? h("button", { class: "btn", type: "button", onclick: function () {
           openEditor("plan", null, { title: it.title, note: [it.price, it.note].filter(Boolean).join("\n"), cat: TAG2CAT[it.tag] || "stadt", day: state.day, time: "12:00", status: "offen", cost: null });
         } }, "In den Plan") : null,
         h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("ideas", it); } }, "Bearbeiten")) : null);
-  }
-
-  /* Abstimmen */
-  function myName() { return (lsGet(LS_NAME) || "").trim(); }
-  function askName(then) {
-    var inp = h("input", { type: "text", id: "f-name", autocomplete: "given-name", maxlength: "30", placeholder: "Vorname" });
-    inp.value = myName();
-    var err = h("p", { class: "err", role: "alert" });
-    var form = h("form", { class: "panel", novalidate: true },
-      h("h2", null, "Wer bist du?"),
-      h("p", { class: "note" }, "Dein Name steht bei deinen Stimmen. Er wird nur auf diesem Gerät gemerkt."),
-      h("div", { class: "field" }, h("label", { for: "f-name" }, "Name"), inp), err,
-      h("div", { class: "actions" }, h("div", { class: "actions" },
-        h("button", { class: "btn btn-accent", type: "submit" }, "Speichern"),
-        h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen"))));
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var v = inp.value.trim();
-      if (!v) { err.textContent = "Bitte einen Namen eintragen."; return; }
-      lsSet(LS_NAME, v); closeSheet(); then(v);
-    });
-    showSheet(form);
-  }
-  function setVote(it, name, v) {
-    var cur = find("ideas", it.id) || it;
-    var votes = Object.assign({}, cur.votes || {});
-    if (votes[name] === v) delete votes[name]; else votes[name] = v;
-    upsert("ideas", Object.assign({}, cur, { votes: votes }));
-    change("Stimme von " + name + ": " + cur.title);
-  }
-  function shareVote(it, name, v) {
-    var text = name + " stimmt " + (v === "up" ? "👍 dafür" : "👎 dagegen") + ": „" + it.title + "“";
-    lsSet("kw-myvote-" + it.id, v);
-    render();
-    if (navigator.share) navigator.share({ text: text }).catch(function () {});
-    else window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener");
-  }
-  function vote(it, v) {
-    var name = myName();
-    if (!name) { askName(function () { vote(it, v); }); return; }
-    if (canEdit()) setVote(it, name, v); else shareVote(it, name, v);
-  }
-  function voteOther(it) {
-    var inp = h("input", { type: "text", id: "f-voter", autocomplete: "off", maxlength: "30", placeholder: "Name" });
-    var err = h("p", { class: "err", role: "alert" });
-    function pick(v) {
-      var n = inp.value.trim();
-      if (!n) { err.textContent = "Bitte den Namen eintragen."; inp.focus(); return; }
-      closeSheet(); setVote(it, n, v); toast("Stimme eingetragen");
-    }
-    showSheet(h("div", { class: "panel" },
-      h("h2", null, "Stimme eintragen"),
-      h("p", { class: "note" }, "Für „" + it.title + "“. Nochmal dieselbe Stimme für denselben Namen nimmt sie wieder weg."),
-      h("div", { class: "field" }, h("label", { for: "f-voter" }, "Name"), inp), err,
-      h("div", { class: "actions" }, h("div", { class: "actions" },
-        h("button", { class: "btn", type: "button", onclick: function () { pick("up"); } }, "👍 Dafür"),
-        h("button", { class: "btn", type: "button", onclick: function () { pick("down"); } }, "👎 Dagegen")),
-        h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen"))));
-  }
-  function voteBox(it) {
-    var votes = it.votes || {}, ups = [], downs = [];
-    Object.keys(votes).sort().forEach(function (n) { if (votes[n] === "up") ups.push(n); else if (votes[n] === "down") downs.push(n); });
-    var mine = canEdit() ? votes[myName()] : lsGet("kw-myvote-" + it.id);
-    var names = [ups.length ? "Dafür: " + ups.join(", ") : null, downs.length ? "Dagegen: " + downs.join(", ") : null].filter(Boolean).join(" · ");
-    return h("div", { class: "vote" },
-      h("button", { class: "vbtn" + (mine === "up" ? " on" : ""), type: "button", "aria-pressed": String(mine === "up"), "aria-label": "Dafür stimmen", onclick: function () { vote(it, "up"); } }, "👍 ", h("span", { class: "mono" }, ups.length)),
-      h("button", { class: "vbtn" + (mine === "down" ? " on" : ""), type: "button", "aria-pressed": String(mine === "down"), "aria-label": "Dagegen stimmen", onclick: function () { vote(it, "down"); } }, "👎 ", h("span", { class: "mono" }, downs.length)),
-      canEdit() ? h("button", { class: "link", type: "button", onclick: function () { voteOther(it); } }, "Stimme für jemand anderen") : null,
-      names ? h("span", { class: "vnames" }, names) : null);
   }
 
   /* Geld */
