@@ -45,12 +45,12 @@
       "id": "fr-04",
       "day": "fr",
       "time": "18:30",
-      "title": "Günstig essen",
+      "title": "Essen im Kwartier Latäng",
       "cat": "essen",
       "status": "offen",
       "cost": 10,
       "done": false,
-      "note": "Rund um die Zülpicher Straße und die Ringe: Pizza, Döner oder Burger. Ziel etwa 10 € pro Person."
+      "note": "Gegend: Zülpicher Straße und Zülpicher Platz, zu Fuß vom Hotel. Viele günstige Imbisse und Restaurants nebeneinander (Falafel, Döner, Pizza, Pasta), dort einfach etwas aussuchen. Danach seid ihr direkt im Barviertel. Ziel etwa 10 € pro Person."
     },
     {
       "id": "fr-05",
@@ -61,7 +61,7 @@
       "status": "offen",
       "cost": 6,
       "done": false,
-      "note": "Barszene erkunden. Konkrete Bar noch auswählen. Unter 18: keine Spirituosen."
+      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr."
     },
     {
       "id": "fr-06",
@@ -72,7 +72,7 @@
       "status": "offen",
       "cost": 6,
       "done": false,
-      "note": "Entspannt bleiben, nur 1 bis 2 Bars. Konkrete Bar noch auswählen."
+      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr."
     },
     {
       "id": "fr-07",
@@ -89,12 +89,12 @@
       "id": "sa-01",
       "day": "sa",
       "time": "10:00",
-      "title": "Ausschlafen und Frühstück",
+      "title": "Ausschlafen und Frühstück im Zimmer",
       "cat": "essen",
       "status": "offen",
-      "cost": 6,
+      "cost": 3,
       "done": false,
-      "note": "Frühstück im Café, beim Bäcker oder im Hotel."
+      "note": "Mit der Küche im Zimmer selbst frühstücken. Einkauf am Freitag (siehe Offen). Geschätzt 3 € pro Person. Alternative: Café oder Bäcker in der Nähe."
     },
     {
       "id": "sa-02",
@@ -105,7 +105,7 @@
       "status": "offen",
       "cost": 10,
       "done": false,
-      "note": "Bummeln, Street Food, Vintage-Läden. Abends um 17:00 startet in Ehrenfeld der Moonlight Market in der Pattenhalle."
+      "note": "Gegend: Venloer Straße in Ehrenfeld. Bummeln, Vintage-Läden und Street Food, viele Imbisse an der Straße, dort spontan etwas aussuchen."
     },
     {
       "id": "sa-03",
@@ -155,12 +155,12 @@
       "id": "sa-07",
       "day": "sa",
       "time": "21:45",
-      "title": "Snack und Umziehen",
+      "title": "Snack und Umziehen im Hotel",
       "cat": "essen",
       "status": "offen",
-      "cost": 6,
+      "cost": 3,
       "done": false,
-      "note": "Etwas Kleines essen, dann zum Club."
+      "note": "Kurz ins Hotel, mit der Küche schnell etwas Kleines machen, umziehen, dann zum Club. Geschätzt 3 € pro Person."
     },
     {
       "id": "sa-08",
@@ -177,12 +177,12 @@
       "id": "so-01",
       "day": "so",
       "time": "09:30",
-      "title": "Frühstück und Auschecken",
+      "title": "Frühstück im Zimmer und Auschecken",
       "cat": "essen",
       "status": "offen",
-      "cost": 6,
+      "cost": 3,
       "done": false,
-      "note": "Zimmer räumen, Gepäck zusammenpacken."
+      "note": "Reste vom Einkauf aufbrauchen, Zimmer räumen, Gepäck packen. Geschätzt 3 € pro Person."
     },
     {
       "id": "so-02",
@@ -271,11 +271,11 @@
     {
       "id": "i-07",
       "created": 7,
-      "title": "Art Cologne",
+      "title": "Vorschlag: Art Cologne vor der Museumsnacht",
       "tag": "kultur",
       "verdict": "pruefen",
-      "price": "34 € Tageskarte, 29 € ermäßigt",
-      "note": "5. bis 8. Nov in der Koelnmesse (Bahn bis Messe/Deutz). Neu: Laut koeln.de ist die Art Cologne am 7.11. als „Museum auf Zeit“ Teil der Museumsnacht, von 16 bis 19 Uhr mit dem Museumsnacht-Ticket. Unbestätigt, ob das Ticket schon ab 16 Uhr gilt. Einzeln 34 € (ermäßigt 29 €), zu teuer.",
+      "price": "Mit Museumsnacht-Ticket 16 bis 19 Uhr (unbestätigt)",
+      "note": "Vorschlag: Sa 16:30 statt Pause bis 18:30 zur Art Cologne in der Koelnmesse (Bahn bis Messe/Deutz), dann zum Schokoladenmuseum. Laut koeln.de ist die Art Cologne am 7.11. von 16 bis 19 Uhr als „Museum auf Zeit“ Teil der Museumsnacht. Unbestätigt, ob das Ticket schon ab 16 Uhr gilt. Einzeln 34 € (ermäßigt 29 €), das wäre zu teuer.",
       "link": ""
     },
     {
@@ -325,7 +325,7 @@
       "tag": "club",
       "verdict": "pruefen",
       "price": "Günstig",
-      "note": "Eher kleiner Studentenclub mit Pop und Mitsing-Hits. Programm und Altersregel für den 7.11. nicht geprüft.",
+      "note": "Sa 7.11., Club-Bereich im Herbrand's (gleiches Haus wie Trash McFly), gemischte Musik, Eintritt frei. Altersregel steht nirgends.",
       "link": ""
     },
     {
@@ -371,21 +371,51 @@
     {
       "id": "i-17",
       "created": 17,
-      "title": "Günstig essen im Kwartier Latäng",
+      "title": "Essen: gute Gegenden",
       "tag": "essen",
       "verdict": "drin",
       "price": "ca. 5 bis 10 €",
-      "note": "Habibi: Falafel-Wrap unter 5 €. Ferkulum: Gyros-Pita unter 8 €, am Wochenende bis 4 Uhr. Borsalino: Pasta unter 10 €. Preise aus Magazin-Artikeln, können sich geändert haben.",
+      "note": "Kwartier Latäng (Zülpicher Straße): viele günstige Imbisse, nah am Hotel. Venloer Straße in Ehrenfeld: Street Food, international. Ringe: Fast Food bis spät in die Nacht. Frühstück und Snacks günstig in der Zimmerküche.",
       "link": ""
     },
     {
       "id": "i-18",
       "created": 18,
-      "title": "Bars im Kwartier Latäng",
+      "title": "Barviertel: Kwartier Latäng",
       "tag": "essen",
       "verdict": "drin",
       "price": "",
-      "note": "Gilbert's Pinte (Engelbätstraße, älteste Studi-Kneipe), Bei Oma Kleinmann (Zülpicher Straße, Kult-Eckkneipe), Der Stiefel (Eckkneipe), Rosebud (Cocktailbar). Preise nicht geprüft. Unter 18: keine Spirituosen.",
+      "note": "Rund um die Zülpicher Straße, das Studentenviertel. Belebt, bekannt, junges Publikum, zu Fuß vom Hotel. Bekannte Kneipen: Gilbert's Pinte, Bei Oma Kleinmann, Der Stiefel, Rosebud (Cocktails). Alternative: Belgisches Viertel um den Brüsseler Platz, eher Cocktail- und Weinbars, etwas teurer und älter.",
+      "link": ""
+    },
+    {
+      "id": "i-19",
+      "created": 19,
+      "title": "Luxor (Luxemburger Straße)",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "",
+      "note": "Bei partyzettel.de haben Nutzer 13-mal „Muttizettel erlaubt“ und 6-mal „nicht erlaubt“ markiert, keine offizielle Angabe. Ein Programm für den 7.11. habe ich nicht gefunden. Nah am Veedel Club, zu Fuß vom Hotel.",
+      "link": ""
+    },
+    {
+      "id": "i-20",
+      "created": 20,
+      "title": "Gewölbe: Techno-Nacht",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "",
+      "note": "Ein Techno-Portal listet für Sa 7.11. „Top Schleuse Eins w/ ATEQ & Skee Mask – all night long“. Quelle eventuell veraltet, Alter unbekannt.",
+      "link": "https://www.morgengrau.net/"
+    },
+    {
+      "id": "i-21",
+      "created": 21,
+      "title": "Früher in den Club (22:00 statt 22:45)",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "Frühbucher 12,90 € statt 16,90 €",
+      "note": "Hinweis: Einlass bei Trash McFly laut Ticketseite ab 21:30 Uhr. Wenn der Muttizettel nicht akzeptiert wird, muss unser 17-Jähriger um 24:00 Uhr raus. Mit 22:00 Uhr hätte er zwei Stunden statt einer. Frühbucher-Ticket nur solange verfügbar.",
       "link": ""
     }
   ],
@@ -393,7 +423,7 @@
     {
       "id": "t-01",
       "created": 1,
-      "text": "Clubs auf Instagram oder per Telefon fragen: Einlass ab 16 mit Muttizettel? (Trash McFly, Veedel Club, Helios37, AYCD). Erst nach Zusage Tickets kaufen",
+      "text": "Clubs auf Instagram oder per Telefon fragen: Einlass ab 16 mit Muttizettel am 7.11.? (Trash McFly, AYCD, Veedel Club, Luxor, Helios37). Online steht bei keinem eine Zusage. Erst nach Zusage Tickets kaufen",
       "done": false
     },
     {
@@ -437,6 +467,12 @@
       "created": 8,
       "text": "Museumsnacht-Tickets online kaufen (ermäßigt nur mit Schüler- oder Studentenausweis)",
       "done": false
+    },
+    {
+      "id": "t-09",
+      "created": 9,
+      "text": "Freitag nach dem Einchecken einkaufen: Frühstück für Sa und So, Snacks für Sa-Abend (Supermarkt in Hotelnähe)",
+      "done": false
     }
   ],
   "notes": [
@@ -445,6 +481,12 @@
       "from": "claude",
       "created": "2026-11-05T19:45:00+01:00",
       "text": "Ich habe Ideen und offene Fragen aktualisiert. Den Zeitplan habe ich noch nicht geändert. Meine Vorschläge dazu stehen im Chat. Unbestätigt sind vor allem: Altersregeln aller Clubs, Bowling-Preise, Parkpreis Rotonda und der genaue Preis der KVB-Tickets."
+    },
+    {
+      "id": "c-02",
+      "from": "claude",
+      "created": "2026-11-05T20:15:00+01:00",
+      "text": "Essen steht jetzt als Gegend im Plan, Frühstück und Snack mit Zimmerküche. Bars: Kwartier Latäng. Für Clubs mit Muttizettel am 7.11. gibt es online keine Zusage, das müsst ihr direkt beim Club erfragen. Art Cologne und „früher in den Club“ stehen als Vorschlag unter Ideen."
     }
   ]
 }
