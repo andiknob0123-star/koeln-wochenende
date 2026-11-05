@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Köln">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E141A" media="(prefers-color-scheme: dark)">
+<!-- Leer lassen: auf GitHub Pages wird das Repo aus der Adresse erkannt. Sonst "besitzer/repo". -->
+<meta name="kw-repo" content="">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Köln Wochenende</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: eine schmale Spalte wie ein Fahrplan. Oben die Anzeigetafel (Jetzt / Als Nächstes), darunter fünf Reiter. */
+:root {
+  --bg: #EDF0F3; --surface: #FFFFFF; --ink: #131D27; --muted: #5B6875; --line: #D5DBE2;
+  --accent: #C0112B; --accent-ink: #FFFFFF; --soft: #FBE7EA;
+  --ok: #1F7A4D; --ok-soft: #DDF1E6; --warn: #9A5A00; --warn-soft: #FBEBCF;
+  --board: #16212C; --board-ink: #F2F5F8; --board-dim: #9FB0C0; --board-pop: #FF7385;
+  --scrim: rgba(8, 12, 16, 0.55);
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0E141A; --surface: #17202A; --ink: #E8EDF2; --muted: #93A0AD; --line: #28333F;
+    --accent: #FF5A70; --accent-ink: #1A0509; --soft: #3A1820;
+    --ok: #5FD39A; --ok-soft: #14301F; --warn: #F0B35A; --warn-soft: #3A2C12;
+    --board: #1D2A37; --board-ink: #F2F5F8; --board-dim: #9FB0C0; --board-pop: #FF7385;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.45 var(--body);
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.app { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.stack { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+.head { display: flex; flex-direction: column; gap: 2px; }
+.head h1 { font: 800 28px/1.05 var(--display); letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.head p { margin: 0; color: var(--muted); font-size: 13px; }
+.status { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; margin-top: 6px; }
+.st { color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.st::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.st-ok { color: var(--ok); } .st-ok::before { background: var(--ok); }
+.st-busy { color: var(--warn); } .st-busy::before { background: var(--warn); }
+.st-err { color: var(--accent); } .st-err::before { background: var(--accent); }
+.st-btns { display: flex; gap: 2px; flex-wrap: wrap; }
+.link { background: none; border: 0; padding: 8px 8px; min-height: 36px; color: var(--ink); font-weight: 600; font-size: 13px; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+
+.board { background: var(--board); color: var(--board-ink); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--line); }
+.board-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--board-dim); }
+.board-top .mono { color: var(--board-ink); letter-spacing: 0; font-size: 12px; }
+.board-main { font: 800 24px/1.1 var(--display); text-wrap: balance; overflow-wrap: anywhere; }
+.board-main .mono { font-size: 20px; color: var(--board-pop); margin-right: 8px; }
+.board-sub { color: var(--board-dim); font-size: 13px; }
+.board-sub b { color: var(--board-ink); font-weight: 600; }
+
+.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--line); }
+.tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 2px 9px; min-height: 44px; font-weight: 600; font-size: 14px; color: var(--muted); }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tab .n { font-family: var(--mono); font-size: 11px; margin-left: 3px; color: var(--muted); }
+
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.seg-btn { display: flex; flex-direction: column; align-items: center; padding: 8px 4px; min-height: 52px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.seg-btn[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.seg-d { font: 800 16px/1.1 var(--display); }
+.seg-s { font-size: 12px; opacity: 0.75; }
+.day-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.day-head h2, .sec-title { font: 800 18px/1.2 var(--display); margin: 0; }
+.day-head span { color: var(--muted); font-size: 13px; }
+
+.list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.row { border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; }
+.row-main { width: 100%; display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: start; text-align: left; background: none; border: 0; padding: 12px 14px; min-height: 56px; }
+.time { font: 700 14px/1.5 var(--mono); font-variant-numeric: tabular-nums; }
+.body { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.title { font-weight: 600; overflow-wrap: anywhere; }
+.meta { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.cost { font: 500 13px/1.7 var(--mono); color: var(--muted); white-space: nowrap; }
+.chip, .pill { font-size: 11px; line-height: 1; padding: 4px 7px; border-radius: 4px; letter-spacing: 0.02em; }
+.chip { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.pill-fix, .pill-drin { background: var(--ok-soft); color: var(--ok); font-weight: 600; }
+.pill-offen, .pill-pruefen { background: var(--warn-soft); color: var(--warn); font-weight: 600; }
+.pill-now { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.pill-next { background: var(--soft); color: var(--accent); font-weight: 600; }
+.pill-raus { background: var(--bg); color: var(--muted); border: 1px solid var(--line); font-weight: 600; }
+.row.is-now { background: var(--soft); }
+.row.is-past .title, .row.is-past .time { color: var(--muted); }
+.row.is-done .title { text-decoration: line-through; color: var(--muted); }
+.detail { padding: 0 14px 14px 76px; display: flex; flex-direction: column; gap: 10px; }
+.note { margin: 0; white-space: pre-line; font-size: 14px; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.shift { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.shift-l { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-right: 2px; }
+.sbtn { min-width: 52px; min-height: 40px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); font: 700 13px var(--mono); }
+.chk-l { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); min-height: 32px; }
+.chk-l input { width: 20px; height: 20px; accent-color: var(--accent); margin: 0; }
+.btn { min-height: 40px; padding: 8px 14px; border-radius: 6px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); font-weight: 600; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-danger { background: transparent; color: var(--accent); border-color: var(--accent); }
+.btn-add { width: 100%; background: transparent; color: var(--ink); border: 1px dashed var(--muted); min-height: 48px; border-radius: 8px; font-weight: 600; }
+.notice { padding: 12px 14px; border-radius: 8px; background: var(--warn-soft); color: var(--warn); font-size: 13px; }
+.empty { padding: 22px 16px; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 8px; }
+
+.cards { display: flex; flex-direction: column; gap: 10px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card.is-raus { opacity: 0.8; }
+.card h3 { font: 800 16px/1.25 var(--display); margin: 0; overflow-wrap: anywhere; }
+.card .price { font: 500 13px/1.4 var(--mono); color: var(--muted); }
+.card a { color: var(--accent); font-weight: 600; font-size: 13px; }
+
+.big { font: 800 40px/1 var(--display); letter-spacing: -0.02em; }
+.big small { font: 500 14px var(--body); color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+.track { position: relative; height: 14px; background: var(--bg); border: 1px solid var(--line); border-radius: 3px; margin-bottom: 18px; }
+.fill { height: 100%; background: var(--ok); border-radius: 2px; }
+.fill.over { background: var(--warn); }
+.mark { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--ink); }
+.mark-l { position: absolute; top: 20px; transform: translateX(-100%); font: 500 11px var(--mono); color: var(--muted); padding-right: 5px; white-space: nowrap; }
+.bars { display: flex; flex-direction: column; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 88px minmax(0, 1fr) 64px; gap: 10px; align-items: center; font-size: 13px; }
+.bar-row .mono { text-align: right; }
+.bar { height: 8px; background: var(--bg); border-radius: 2px; }
+.bar > i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+.tips, .steps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+
+.todo { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; border-top: 1px solid var(--line); }
+.todo:first-child { border-top: 0; }
+.todo .chk { width: 44px; height: 48px; background: none; border: 0; display: grid; place-items: center; }
+.box { width: 22px; height: 22px; border: 2px solid var(--muted); border-radius: 5px; display: grid; place-items: center; font-weight: 800; font-size: 14px; line-height: 1; }
+.todo.is-done .box { background: var(--ok); border-color: var(--ok); color: var(--bg); }
+.todo.is-done .t { text-decoration: line-through; color: var(--muted); }
+.todo .t { padding: 10px 0; overflow-wrap: anywhere; }
+.todo .edit { background: none; border: 0; color: var(--muted); padding: 10px 14px; min-height: 44px; font-size: 13px; }
+.addbar { display: flex; gap: 8px; }
+.addbar input { flex: 1; min-width: 0; }
+
+.chat { display: flex; flex-direction: column; gap: 10px; }
+.bub { max-width: 88%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 4px; min-width: 0; align-self: flex-end; }
+.bub p { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+.bub small { font-size: 11px; color: var(--muted); letter-spacing: 0.03em; }
+.bub-claude { align-self: flex-start; background: var(--soft); border-color: var(--soft); }
+.compose { display: flex; flex-direction: column; gap: 8px; }
+
+input[type=text], input[type=password], input[type=time], input[type=url], select, textarea { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); font-size: 16px; }
+textarea { min-height: 96px; resize: vertical; }
+.sheet { position: fixed; inset: 0; z-index: 30; display: flex; align-items: flex-end; justify-content: center; }
+.scrim { position: absolute; inset: 0; background: var(--scrim); }
+.panel { position: relative; width: 100%; max-width: 640px; max-height: 92%; overflow-y: auto; background: var(--bg); border-radius: 14px 14px 0 0; padding: 16px max(16px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 12px; }
+.panel h2 { font: 800 20px/1.2 var(--display); margin: 0; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.two > * { min-width: 0; }
+.err { color: var(--accent); font-size: 13px; min-height: 18px; margin: 0; }
+.panel .actions { justify-content: space-between; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 6px; font-size: 14px; max-width: calc(100% - 32px); }
+@media (max-width: 380px) { .two { grid-template-columns: 1fr; } .bar-row { grid-template-columns: 70px minmax(0, 1fr) 58px; } .tab { font-size: 13px; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <h1>Köln Wochenende</h1>
+    <p id="sub">Fr 6. – So 8. Nov 2026 · 3 Leute</p>
+    <div class="status" id="status"></div>
+  </header>
+  <section id="banner" aria-live="polite"></section>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Bereiche"></nav>
+  <main id="view" class="stack"></main>
+</div>
+<div id="sheet" class="sheet" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  "use strict";
+  var DEFAULT_DATES = { fr: "2026-11-06", sa: "2026-11-07", so: "2026-11-08" };
+  var DAYS = [
+    { id: "fr", short: "Fr", long: "Freitag", date: "6. Nov" },
+    { id: "sa", short: "Sa", long: "Samstag", date: "7. Nov" },
+    { id: "so", short: "So", long: "Sonntag", date: "8. Nov" }
+  ];
+  var CATS = { fahrt: "Fahrt", hotel: "Hotel", stadt: "Stadt", essen: "Essen", bar: "Bar", action: "Action", kultur: "Museum", club: "Club", chill: "Pause" };
+  var TAGS = { club: "Club", action: "Action", markt: "Markt", kultur: "Museum / Kultur", essen: "Essen" };
+  var TAG2CAT = { club: "club", action: "action", markt: "stadt", kultur: "kultur", essen: "essen" };
+  var VERDICTS = { drin: "Im Rennen", pruefen: "Noch prüfen", raus: "Raus" };
+  var COLS = ["plan", "ideas", "todos", "notes"];
+  var LS_TOKEN = "kw-token", LS_CACHE = "kw-cache", LS_SHIFT = "kw-shift";
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Wo liegt die Datei? */
+  function repoInfo() {
+    var meta = document.querySelector('meta[name="kw-repo"]');
+    var m = meta && meta.content.trim();
+    if (m && m.indexOf("/") > 0) { var p = m.split("/"); return { owner: p[0], repo: p[1], path: p.slice(2).concat(["data.json"]).join("/") }; }
+    if (/\.github\.io$/i.test(location.hostname)) {
+      var owner = location.hostname.split(".")[0];
+      var segs = location.pathname.split("/").filter(Boolean);
+      if (segs.length && /\.html?$/i.test(segs[segs.length - 1])) segs.pop();
+      var repo = segs.length ? segs[0] : owner + ".github.io";
+      var dir = segs.slice(1);
+      return { owner: owner, repo: repo, path: dir.concat(["data.json"]).join("/") };
+    }
+    return null;
+  }
+  var REPO = repoInfo();
+
+  var state = {
+    data: null, sha: null, token: lsGet(LS_TOKEN) || null,
+    tab: "plan", day: null, open: null,
+    pend: { set: {}, del: {} }, inflight: null,
+    saving: false, saveTimer: null, saveAgain: false, saveError: null, savedAt: null, conflicts: 0,
+    loading: false, loadError: null, fetchedAt: null, lastMsg: "",
+    shiftRest: lsGet(LS_SHIFT) !== "0", draft: "", todoDraft: ""
+  };
+  function canEdit() { return !!(state.token && REPO); }
+
+  function h(tag, props) {
+    var e = document.createElement(tag);
+    for (var k in (props || {})) {
+      var v = props[k];
+      if (v == null || v === false) continue;
+      if (k === "class") e.className = v;
+      else if (k.indexOf("on") === 0) e.addEventListener(k.slice(2), v);
+      else e.setAttribute(k, v === true ? "" : v);
+    }
+    (function add(list) {
+      list.forEach(function (c) {
+        if (c == null || c === false) return;
+        if (Array.isArray(c)) return add(c);
+        e.append(c.nodeType ? c : document.createTextNode(String(c)));
+      });
+    })(Array.prototype.slice.call(arguments, 2));
+    return e;
+  }
+  function uid() { return "x" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function fmt(n) { return n.toLocaleString("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); }
+  function money(c) { return c == null ? "–" : (c === 0 ? "frei" : fmt(c) + " €"); }
+  function hm(ts) { return new Date(ts).toLocaleTimeString("de-DE", { timeZone: "Europe/Berlin", hour: "2-digit", minute: "2-digit" }); }
+  function toMin(t) { var m = String(t || "0:0").split(":"); return (+m[0] || 0) * 60 + (+m[1] || 0); }
+  function fromMin(n) { n = Math.max(0, Math.min(1439, n)); var hh = Math.floor(n / 60), mm = n % 60; return (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm; }
+  function dayName(id) { var d = DAYS.filter(function (x) { return x.id === id; })[0]; return d ? d.long : id; }
+
+  /* Base64 mit Umlauten */
+  function toB64(str) {
+    var bytes = new TextEncoder().encode(str), bin = "";
+    for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin);
+  }
+  function fromB64(b) {
+    var bin = atob(String(b).replace(/\s/g, "")), bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(bytes);
+  }
+
+  /* Daten */
+  function normalize(d) {
+    d = d && typeof d === "object" ? d : {};
+    COLS.forEach(function (c) { if (!Array.isArray(d[c])) d[c] = []; });
+    d.dates = d.dates || DEFAULT_DATES;
+    if (typeof d.budget !== "number") d.budget = 100;
+    return d;
+  }
+  function dates() { return (state.data && state.data.dates) || DEFAULT_DATES; }
+  function find(col, id) { return state.data[col].filter(function (x) { return x.id === id; })[0] || null; }
+  function pendCount(p) {
+    p = p || state.pend; var n = 0;
+    ["set", "del"].forEach(function (k) { for (var c in p[k]) n += Object.keys(p[k][c]).length; });
+    return n;
+  }
+  function markSet(col, id) { (state.pend.set[col] = state.pend.set[col] || {})[id] = 1; if (state.pend.del[col]) delete state.pend.del[col][id]; }
+  function markDel(col, id) { (state.pend.del[col] = state.pend.del[col] || {})[id] = 1; if (state.pend.set[col]) delete state.pend.set[col][id]; }
+  function joinPend(a, b) {
+    ["set", "del"].forEach(function (k) {
+      var other = k === "set" ? "del" : "set";
+      for (var c in b[k]) for (var id in b[k][c]) {
+        if (a[other][c] && a[other][c][id]) continue;
+        (a[k][c] = a[k][c] || {})[id] = 1;
+      }
+    });
+  }
+  function mergeInto(remote) {
+    COLS.forEach(function (col) {
+      var dl = state.pend.del[col] || {}, st = state.pend.set[col] || {};
+      var list = remote[col].filter(function (x) { return !dl[x.id]; });
+      Object.keys(st).forEach(function (id) {
+        var loc = state.data ? find(col, id) : null;
+        if (!loc) return;
+        var i = -1;
+        for (var j = 0; j < list.length; j++) if (list[j].id === id) i = j;
+        if (i >= 0) list[i] = loc; else list.push(loc);
+      });
+      remote[col] = list;
+    });
+    return remote;
+  }
+  function upsert(col, item) {
+    var list = state.data[col], i = -1;
+    for (var j = 0; j < list.length; j++) if (list[j].id === item.id) i = j;
+    if (i >= 0) list[i] = item; else list.push(item);
+    markSet(col, item.id);
+  }
+  function removeItem(col, id) { state.data[col] = state.data[col].filter(function (x) { return x.id !== id; }); markDel(col, id); }
+
+  function saveCache() {
+    if (!state.data) return;
+    lsSet(LS_CACHE, JSON.stringify({ data: state.data, sha: state.sha, pend: state.pend, at: state.fetchedAt }));
+  }
+  function readCache() {
+    try {
+      var c = JSON.parse(lsGet(LS_CACHE) || "null");
+      if (c && c.data && Array.isArray(c.data.plan)) return c;
+    } catch (e) {}
+    return null;
+  }
+
+  /* GitHub */
+  function apiUrl() { return "https://api.github.com/repos/" + REPO.owner + "/" + REPO.repo + "/contents/" + REPO.path.split("/").map(encodeURIComponent).join("/"); }
+  function authHeaders() { return { Authorization: "Bearer " + state.token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" }; }
+  function fetchLocal() {
+    return fetch("data.json?ts=" + Date.now(), { cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw { code: "http", status: r.status };
+      return r.json();
+    }).then(function (d) { return { data: d }; });
+  }
+  function fetchOwner(token) {
+    return fetch(apiUrl() + "?ts=" + Date.now(), { cache: "no-store", headers: { Authorization: "Bearer " + token, Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" } }).then(function (r) {
+      if (r.status === 401) throw { code: "auth" };
+      if (r.status === 403 || r.status === 404) throw { code: "noaccess", status: r.status };
+      if (!r.ok) throw { code: "http", status: r.status };
+      return r.json();
+    }).then(function (j) { return { data: JSON.parse(fromB64(j.content)), sha: j.sha }; });
+  }
+  function fetchRemote() {
+    if (canEdit()) return fetchOwner(state.token);
+    if (!REPO) return fetchLocal();
+    return fetch(apiUrl() + "?ts=" + Date.now(), { cache: "no-store", headers: { Accept: "application/vnd.github.raw+json" } }).then(function (r) {
+      if (!r.ok) throw { code: "http", status: r.status };
+      return r.json();
+    }).then(function (d) { return { data: d }; }).catch(fetchLocal);
+  }
+
+  function dropToken(msg) {
+    state.token = null; lsSet(LS_TOKEN, null); state.sha = null;
+    toast(msg);
+  }
+
+  function load(force) {
+    if (state.loading || state.saving) return Promise.resolve();
+    if (!force && state.saveTimer) return Promise.resolve();
+    state.loading = true; renderStatus();
+    return fetchRemote().then(function (res) {
+      state.loading = false; state.loadError = null; state.fetchedAt = Date.now();
+      if (res.sha) state.sha = res.sha;
+      var remote = normalize(res.data);
+      if (canEdit() && pendCount() > 0 && state.data) { state.data = mergeInto(remote); queueSave(0); }
+      else state.data = remote;
+      saveCache(); render();
+    }, function (e) {
+      state.loading = false;
+      if (e && (e.code === "auth" || e.code === "noaccess")) {
+        dropToken(e.code === "auth" ? "Der Schlüssel ist ungültig oder abgelaufen. Bearbeiten ist aus." : "Der Schlüssel hat keinen Zugriff auf dieses Repo. Bearbeiten ist aus.");
+        return load(true);
+      }
+      state.loadError = state.data ? "Der neueste Stand ist gerade nicht erreichbar. Du siehst den zuletzt geladenen Stand." : "Der Plan konnte nicht geladen werden. Prüfe das Internet und tippe auf „Aktualisieren“.";
+      render();
+    });
+  }
+
+  function queueSave(delay) {
+    if (!canEdit()) return;
+    clearTimeout(state.saveTimer);
+    state.saveTimer = setTimeout(function () { state.saveTimer = null; doSave(); }, delay == null ? 700 : delay);
+    renderStatus();
+  }
+  function change(msg) { state.lastMsg = msg; saveCache(); render(); queueSave(); }
+  function restoreInflight() { if (state.inflight) { joinPend(state.pend, state.inflight); state.inflight = null; } }
+  function doSave() {
+    if (!canEdit() || !state.data) return;
+    if (state.saving) { state.saveAgain = true; return; }
+    if (pendCount() === 0) { renderStatus(); return; }
+    state.saving = true; state.saveError = null;
+    state.inflight = state.pend; state.pend = { set: {}, del: {} };
+    state.data.updated = new Date().toISOString();
+    var body = { message: "Plan: " + (state.lastMsg || "Änderung"), content: toB64(JSON.stringify(state.data, null, 2) + "\n") };
+    if (state.sha) body.sha = state.sha;
+    renderStatus();
+    var headers = authHeaders(); headers["Content-Type"] = "application/json";
+    fetch(apiUrl(), { method: "PUT", headers: headers, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, ok: r.ok, j: j }; }); })
+      .then(function (x) {
+        state.saving = false;
+        if (x.ok) {
+          state.sha = (x.j && x.j.content && x.j.content.sha) || state.sha;
+          state.inflight = null; state.savedAt = Date.now(); state.conflicts = 0;
+          saveCache();
+          if (state.saveAgain || pendCount()) { state.saveAgain = false; queueSave(0); }
+          render(); return;
+        }
+        restoreInflight();
+        if (x.s === 409 || x.s === 422) {
+          state.conflicts++;
+          if (state.conflicts > 3) { state.saveError = "Speichern klappt gerade nicht. Tippe später auf „Erneut speichern“."; saveCache(); render(); return; }
+          return fetchRemote().then(function (res) {
+            if (res.sha) state.sha = res.sha;
+            state.data = mergeInto(normalize(res.data));
+            saveCache(); render(); queueSave(0);
+          }, function () { state.saveError = "Der neueste Stand ist nicht erreichbar. Tippe später auf „Erneut speichern“."; render(); });
+        }
+        if (x.s === 401) state.saveError = "Der Schlüssel ist ungültig oder abgelaufen. Unter „Gerät“ neu eingeben.";
+        else if (x.s === 403 || x.s === 404) state.saveError = "Der Schlüssel darf nicht in dieses Repo schreiben. Beim Schlüssel muss „Contents: Read and write“ erlaubt sein.";
+        else state.saveError = "Speichern fehlgeschlagen (Fehler " + x.s + "). Deine Änderung ist auf diesem Handy gesichert.";
+        saveCache(); render();
+      }, function () {
+        state.saving = false; restoreInflight();
+        state.saveError = "Keine Verbindung. Deine Änderung ist auf diesem Handy gesichert und wird gespeichert, sobald du wieder online bist.";
+        saveCache(); render();
+      });
+  }
+
+  /* Zeit in Berlin */
+  function berlinNow() {
+    var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Berlin", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+    var g = function (t) { return p.filter(function (x) { return x.type === t; })[0].value; };
+    return g("year") + "-" + g("month") + "-" + g("day") + "T" + g("hour") + ":" + g("minute");
+  }
+  function ms(s) { var m = s.match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)/); return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]); }
+  function startOf(it) { return (dates()[it.day] || dates().fr) + "T" + (it.time || "00:00"); }
+  function sortedPlan() {
+    return state.data.plan.slice().sort(function (a, b) {
+      var x = startOf(a), y = startOf(b);
+      return x < y ? -1 : x > y ? 1 : String(a.title).localeCompare(String(b.title));
+    });
+  }
+  function clockLabel(now) {
+    var d = new Date(ms(now)), w = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"][d.getUTCDay()];
+    return w + " " + d.getUTCDate() + "." + (d.getUTCMonth() + 1) + ". " + now.slice(11);
+  }
+  function dur(diff) {
+    var min = Math.max(0, Math.round(diff / 60000)), d = Math.floor(min / 1440), hh = Math.floor((min % 1440) / 60), mm = min % 60;
+    if (d >= 1) return d + (d > 1 ? " Tage " : " Tag ") + hh + " Std.";
+    return hh + " Std. " + mm + " Min.";
+  }
+  function position() {
+    var now = berlinNow(), list = state.data ? sortedPlan() : [], idx = -1;
+    for (var i = 0; i < list.length; i++) if (startOf(list[i]) <= now) idx = i;
+    var cur = idx >= 0 ? list[idx] : null;
+    var active = cur && (ms(now) - ms(startOf(cur))) <= 180 * 60000;
+    var next = list[idx + 1] || null;
+    return { now: now, list: list, cur: active ? cur : null, next: next, last: !next && cur && !active };
+  }
+  function initialDay() {
+    var today = berlinNow().slice(0, 10), ds = dates();
+    for (var k in ds) if (ds[k] === today) return k;
+    return "fr";
+  }
+
+  /* Anzeige */
+  function toast(msg) {
+    var t = $("toast"); t.textContent = msg; t.hidden = false;
+    clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 3500);
+  }
+
+  function renderStatus() {
+    var el = $("status"); el.textContent = "";
+    var left;
+    if (canEdit()) {
+      if (state.saving || state.saveTimer) left = h("span", { class: "st st-busy" }, "Speichert …");
+      else if (state.saveError || pendCount()) left = h("span", { class: "st st-err" }, "Nicht gespeichert");
+      else left = h("span", { class: "st st-ok" }, state.savedAt ? "Gespeichert " + hm(state.savedAt) : "Bearbeiten an");
+    } else {
+      left = h("span", { class: "st" }, state.loading ? "Lädt …" : state.fetchedAt ? "Nur ansehen · Stand " + hm(state.fetchedAt) : "Nur ansehen");
+    }
+    el.append(left, h("span", { class: "st-btns" },
+      canEdit() && (state.saveError || pendCount()) && !state.saving && !state.saveTimer ? h("button", { class: "link", type: "button", onclick: function () { state.saveError = null; state.conflicts = 0; doSave(); } }, "Erneut speichern") : null,
+      h("button", { class: "link", type: "button", onclick: function () { load(true); } }, "Aktualisieren"),
+      h("button", { class: "link", type: "button", onclick: openKey }, canEdit() ? "Gerät" : "Bearbeiten")));
+  }
+
+  function renderBanner() {
+    var box = $("banner"); box.textContent = "";
+    var pos = position(), label, main, sub;
+    if (!state.data) { label = "Plan"; main = "Wird geladen …"; sub = ""; }
+    else if (!pos.list.length) { label = "Plan"; main = "Noch keine Einträge"; sub = "Unter „Plan“ den ersten Punkt anlegen."; }
+    else if (pos.now < startOf(pos.list[0])) {
+      var f = pos.list[0];
+      label = "Abfahrt in"; main = "Noch " + dur(ms(startOf(f)) - ms(pos.now));
+      sub = h("span", null, h("b", null, dayName(f.day).slice(0, 2) + " " + f.time), " · " + f.title);
+    } else if (pos.last) { label = "Zum Schluss"; main = "Gute Heimfahrt"; sub = "Der Plan ist durch."; }
+    else if (pos.cur) {
+      label = "Jetzt"; main = [h("span", { class: "mono" }, pos.cur.time), pos.cur.title];
+      sub = pos.next ? h("span", null, "Danach ", h("b", null, pos.next.time), " · " + pos.next.title) : "Letzter Punkt";
+    } else {
+      label = "Als Nächstes"; main = [h("span", { class: "mono" }, pos.next.time), pos.next.title];
+      sub = "In " + dur(ms(startOf(pos.next)) - ms(pos.now));
+    }
+    box.append(h("div", { class: "board" },
+      h("div", { class: "board-top" }, h("span", null, label), h("span", { class: "mono" }, clockLabel(pos.now))),
+      h("div", { class: "board-main" }, main), sub ? h("div", { class: "board-sub" }, sub) : null));
+  }
+
+  function renderTabs() {
+    var t = $("tabs"); t.textContent = "";
+    var d = state.data;
+    var open = d ? d.todos.filter(function (x) { return !x.done; }).length : 0;
+    [["plan", "Plan", d ? d.plan.length : null], ["ideen", "Ideen", d ? d.ideas.length : null], ["geld", "Geld", null], ["offen", "Offen", open || null], ["claude", "Claude", null]].forEach(function (x) {
+      t.append(h("button", { class: "tab", type: "button", role: "tab", "aria-selected": String(state.tab === x[0]), onclick: function () { state.tab = x[0]; state.open = null; render(); window.scrollTo(0, 0); } },
+        x[1], x[2] ? h("span", { class: "n" }, x[2]) : null));
+    });
+  }
+
+  function notices() {
+    var out = [];
+    if (state.saveError) out.push(h("div", { class: "notice" }, state.saveError));
+    if (state.loadError) out.push(h("div", { class: "notice" }, state.loadError));
+    return out;
+  }
+
+  /* Plan */
+  function viewPlan() {
+    var pos = position();
+    var seg = h("div", { class: "seg", role: "tablist", "aria-label": "Tag" }, DAYS.map(function (d) {
+      return h("button", { class: "seg-btn", type: "button", role: "tab", "aria-selected": String(state.day === d.id), onclick: function () { state.day = d.id; state.open = null; render(); } },
+        h("span", { class: "seg-d" }, d.short), h("span", { class: "seg-s" }, d.date));
+    }));
+    var info = DAYS.filter(function (d) { return d.id === state.day; })[0];
+    var items = pos.list.filter(function (i) { return i.day === state.day; });
+    var sum = items.reduce(function (s, i) { return s + (typeof i.cost === "number" ? i.cost : 0); }, 0);
+    var head = h("div", { class: "day-head" }, h("h2", null, info.long + ", " + info.date),
+      h("span", null, items.length + (items.length === 1 ? " Punkt" : " Punkte") + " · ca. " + fmt(Math.round(sum * 10) / 10) + " € p. P."));
+    var body = !items.length
+      ? h("div", { class: "empty" }, canEdit() ? "An diesem Tag steht noch nichts. Mit „Eintrag hinzufügen“ den ersten Punkt anlegen." : "An diesem Tag steht noch nichts.")
+      : h("ul", { class: "list" }, items.map(function (it) {
+          var mark = pos.cur && pos.cur.id === it.id ? "now" : (!pos.cur && pos.next && pos.next.id === it.id) ? "next" : startOf(it) <= pos.now ? "past" : "";
+          return planRow(it, mark);
+        }));
+    return [seg, head, body,
+      canEdit() ? h("button", { class: "btn-add", type: "button", onclick: function () { openEditor("plan", null); } }, "+ Eintrag hinzufügen am " + info.long) : null];
+  }
+
+  function shiftItems(it, delta) {
+    var base = toMin(it.time), n = 0;
+    state.data.plan.forEach(function (x) {
+      if (x.day !== it.day) return;
+      if (x.id === it.id || (state.shiftRest && toMin(x.time) >= base)) {
+        var copy = Object.assign({}, x, { time: fromMin(toMin(x.time) + delta) });
+        upsert("plan", copy); n++;
+      }
+    });
+    change(n > 1 ? n + " Punkte am " + dayName(it.day) + " um " + delta + " Min. verschoben" : "„" + it.title + "“ um " + delta + " Min. verschoben");
+    toast(n > 1 ? n + " Punkte verschoben" : "Zeit geändert");
+  }
+
+  function planRow(it, mark) {
+    var open = state.open === it.id;
+    var cls = "row" + (mark === "now" ? " is-now" : "") + (mark === "past" ? " is-past" : "") + (it.done ? " is-done" : "");
+    var detail = null;
+    if (open) {
+      var edit = canEdit() ? [
+        h("div", { class: "shift" }, h("span", { class: "shift-l" }, "Zeit"),
+          [-15, 15, 30, 60].map(function (d) { return h("button", { class: "sbtn", type: "button", "aria-label": (d > 0 ? d + " Minuten später" : -d + " Minuten früher"), onclick: function () { shiftItems(it, d); } }, (d > 0 ? "+" : "−") + Math.abs(d)); })),
+        (function () {
+          var cb = h("input", { type: "checkbox", id: "shift-rest" }); cb.checked = state.shiftRest;
+          cb.addEventListener("change", function () { state.shiftRest = cb.checked; lsSet(LS_SHIFT, cb.checked ? "1" : "0"); });
+          return h("label", { class: "chk-l", for: "shift-rest" }, cb, "Spätere Punkte am " + dayName(it.day) + " mitverschieben");
+        })(),
+        h("div", { class: "actions" },
+          h("button", { class: "btn", type: "button", onclick: function () { upsert("plan", Object.assign({}, it, { done: !it.done })); change((it.done ? "Wieder offen: " : "Erledigt: ") + it.title); } }, it.done ? "Wieder öffnen" : "Erledigt"),
+          h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("plan", it); } }, "Bearbeiten"))
+      ] : null;
+      detail = h("div", { class: "detail" }, h("p", { class: "note" }, it.note || "Keine Notiz."), edit);
+    }
+    return h("li", { class: cls },
+      h("button", { class: "row-main", type: "button", "aria-expanded": String(open), onclick: function () { state.open = open ? null : it.id; render(); } },
+        h("span", { class: "time" }, it.time),
+        h("span", { class: "body" },
+          h("span", { class: "title" }, it.title),
+          h("span", { class: "meta" },
+            mark === "now" ? h("span", { class: "pill pill-now" }, "Jetzt") : null,
+            mark === "next" ? h("span", { class: "pill pill-next" }, "Als Nächstes") : null,
+            h("span", { class: "chip" }, CATS[it.cat] || "Sonstiges"),
+            h("span", { class: "pill " + (it.status === "fix" ? "pill-fix" : "pill-offen") }, it.status === "fix" ? "Fix" : "Offen"))),
+        h("span", { class: "cost" }, money(it.cost))),
+      detail);
+  }
+
+  /* Ideen */
+  function viewIdeen() {
+    var out = [];
+    if (!state.data.ideas.length) out.push(h("div", { class: "empty" }, "Noch keine Ideen gesammelt."));
+    ["drin", "pruefen", "raus"].forEach(function (v) {
+      var list = state.data.ideas.filter(function (i) { return (i.verdict || "pruefen") === v; }).sort(function (a, b) { return (a.created || 0) - (b.created || 0); });
+      if (!list.length) return;
+      out.push(h("h2", { class: "sec-title" }, VERDICTS[v] + " (" + list.length + ")"));
+      out.push(h("div", { class: "cards" }, list.map(ideaCard)));
+    });
+    if (canEdit()) out.push(h("button", { class: "btn-add", type: "button", onclick: function () { openEditor("ideas", null); } }, "+ Idee hinzufügen"));
+    return out;
+  }
+  function ideaCard(it) {
+    var link = typeof it.link === "string" && /^https:\/\//.test(it.link) ? it.link : null;
+    return h("article", { class: "card" + (it.verdict === "raus" ? " is-raus" : "") },
+      h("h3", null, it.title),
+      h("div", { class: "meta" },
+        h("span", { class: "pill pill-" + (it.verdict || "pruefen") }, VERDICTS[it.verdict || "pruefen"]),
+        h("span", { class: "chip" }, TAGS[it.tag] || "Sonstiges")),
+      it.price ? h("div", { class: "price" }, it.price) : null,
+      it.note ? h("p", { class: "note" }, it.note) : null,
+      link ? h("a", { href: link, target: "_blank", rel: "noopener" }, "Mehr dazu") : null,
+      canEdit() ? h("div", { class: "actions" },
+        it.verdict !== "raus" ? h("button", { class: "btn", type: "button", onclick: function () {
+          openEditor("plan", null, { title: it.title, note: [it.price, it.note].filter(Boolean).join("\n"), cat: TAG2CAT[it.tag] || "stadt", day: state.day, time: "12:00", status: "offen", cost: null });
+        } }, "In den Plan") : null,
+        h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("ideas", it); } }, "Bearbeiten")) : null);
+  }
+
+  /* Geld */
+  function viewGeld() {
+    var plan = state.data.plan, budget = state.data.budget;
+    var total = plan.reduce(function (s, i) { return s + (typeof i.cost === "number" ? i.cost : 0); }, 0);
+    var unpriced = plan.filter(function (i) { return typeof i.cost !== "number"; }).length;
+    var scale = Math.max(total, budget), over = total > budget;
+    var cats = {};
+    plan.forEach(function (i) { if (typeof i.cost === "number" && i.cost > 0) cats[i.cat] = (cats[i.cat] || 0) + i.cost; });
+    var catRows = Object.keys(cats).sort(function (a, b) { return cats[b] - cats[a]; });
+    var maxCat = catRows.length ? cats[catRows[0]] : 1;
+    var days = DAYS.map(function (d) { return { d: d, v: plan.filter(function (i) { return i.day === d.id && typeof i.cost === "number"; }).reduce(function (s, i) { return s + i.cost; }, 0) }; });
+    var maxDay = Math.max.apply(null, days.map(function (x) { return x.v; }).concat([1]));
+    var pct = function (v) { return (v / scale * 100).toFixed(2) + "%"; };
+    return [
+      h("div", { class: "card" },
+        h("div", { class: "big" }, "ca. " + fmt(Math.round(total)) + " €", h("small", null, "pro Person, Ziel unter " + budget + " €")),
+        h("div", { class: "track", role: "img", "aria-label": "Ausgaben im Vergleich zu " + budget + " Euro" },
+          h("div", { class: "fill" + (over ? " over" : ""), style: "width:" + Math.min(100, total / scale * 100).toFixed(2) + "%" }),
+          h("div", { class: "mark", style: "left:" + pct(budget) }),
+          h("div", { class: "mark-l", style: "left:" + pct(budget) }, budget + " €")),
+        h("p", { class: "note" }, (over ? "Rund " + fmt(Math.round(total - budget)) + " € über dem Ziel." : "Im Rahmen.") +
+          " Nicht eingerechnet: Hotel, Sprit und Parkplatz." + (unpriced ? " " + unpriced + (unpriced === 1 ? " Punkt hat" : " Punkte haben") + " noch keinen Preis." : ""))),
+      h("h2", { class: "sec-title" }, "Nach Tag"),
+      h("div", { class: "card bars" }, days.map(function (x) { return barRow(x.d.long, x.v, maxDay); })),
+      h("h2", { class: "sec-title" }, "Nach Art"),
+      h("div", { class: "card bars" }, catRows.length ? catRows.map(function (c) { return barRow(CATS[c] || c, cats[c], maxCat); }) : h("span", { class: "note" }, "Noch keine Kosten im Plan.")),
+      h("h2", { class: "sec-title" }, "Sparhebel"),
+      h("div", { class: "card" }, h("ul", { class: "tips" },
+        h("li", null, "Museumsnacht ermäßigt: 10 € statt 20 € (Ausweis mitnehmen)."),
+        h("li", null, "Veedel Club: Eintritt bis 0:00 Uhr frei."),
+        h("li", null, "Trash McFly: Studententicket 9,90 € statt 18 € an der Abendkasse."),
+        h("li", null, "KVB 24-Stunden-Ticket für bis zu 5 Personen statt 3 Einzeltickets."),
+        h("li", null, "Parken: Hotel nach einem Rabatt für die Tiefgarage Rotonda fragen.")))];
+  }
+  function barRow(label, v, max) {
+    return h("div", { class: "bar-row" }, h("span", null, label), h("div", { class: "bar" }, h("i", { style: "width:" + (max ? v / max * 100 : 0).toFixed(2) + "%" })), h("span", { class: "mono" }, fmt(Math.round(v * 10) / 10) + " €"));
+  }
+
+  /* Offen */
+  function viewOffen() {
+    var out = [];
+    var todos = state.data.todos.slice().sort(function (a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0) || (a.created || 0) - (b.created || 0); });
+    if (canEdit()) {
+      var inp = h("input", { type: "text", id: "todo-new", placeholder: "Neue offene Frage", autocomplete: "off", "aria-label": "Neue offene Frage" });
+      inp.value = state.todoDraft;
+      inp.addEventListener("input", function () { state.todoDraft = inp.value; });
+      out.push(h("form", { class: "addbar", onsubmit: function (e) {
+        e.preventDefault(); var v = inp.value.trim(); if (!v) return;
+        state.todoDraft = "";
+        upsert("todos", { id: uid(), text: v, done: false, created: Date.now() });
+        change("Neue Frage: " + v);
+      } }, inp, h("button", { class: "btn", type: "submit" }, "Hinzufügen")));
+    }
+    if (!todos.length) out.push(h("div", { class: "empty" }, "Nichts mehr offen."));
+    else out.push(h("div", { class: "list" }, todos.map(function (t) {
+      return h("div", { class: "todo" + (t.done ? " is-done" : "") },
+        h("button", { class: "chk", type: "button", role: "checkbox", "aria-checked": String(!!t.done), "aria-label": "Erledigt: " + t.text, disabled: canEdit() ? null : true, onclick: function () {
+          upsert("todos", Object.assign({}, t, { done: !t.done })); change((t.done ? "Wieder offen: " : "Erledigt: ") + t.text);
+        } }, h("span", { class: "box" }, t.done ? "✓" : "")),
+        h("span", { class: "t" }, t.text),
+        canEdit() ? h("button", { class: "edit", type: "button", onclick: function () { openEditor("todos", t); } }, "Ändern") : null);
+    })));
+    return out;
+  }
+
+  /* Claude */
+  function viewClaude() {
+    var out = [];
+    var notes = state.data.notes.slice().sort(function (a, b) { return String(a.created).localeCompare(String(b.created)); });
+    out.push(h("div", { class: "card" }, h("p", { class: "note" }, canEdit()
+      ? "Schreib hier, was Claude ändern oder herausfinden soll. Claude sieht neue Nachrichten nicht von selbst. Sag im Chat mit Claude „schau in die App“, dann liest Claude sie auf GitHub und antwortet hier."
+      : "Hier stehen Nachrichten zwischen dem Planer und Claude.")));
+    if (!notes.length) out.push(h("div", { class: "empty" }, "Noch keine Nachrichten."));
+    else out.push(h("div", { class: "chat" }, notes.map(function (m) {
+      var cl = m.from === "claude";
+      var when = m.created ? new Date(m.created).toLocaleString("de-DE", { timeZone: "Europe/Berlin", weekday: "short", hour: "2-digit", minute: "2-digit" }) : "";
+      return h("div", { class: "bub" + (cl ? " bub-claude" : "") }, h("small", null, (cl ? "Claude" : "Du") + (when ? " · " + when : "")), h("p", null, m.text));
+    })));
+    if (canEdit()) {
+      var ta = h("textarea", { id: "msg-new", maxlength: "2000", placeholder: "Nachricht an Claude", "aria-label": "Nachricht an Claude" });
+      ta.value = state.draft;
+      ta.addEventListener("input", function () { state.draft = ta.value; });
+      out.push(h("form", { class: "compose", onsubmit: function (e) {
+        e.preventDefault(); var v = ta.value.trim(); if (!v) return;
+        state.draft = "";
+        upsert("notes", { id: uid(), from: "du", text: v, created: new Date().toISOString() });
+        change("Nachricht an Claude");
+      } }, ta, h("button", { class: "btn btn-accent", type: "submit" }, "Senden")));
+    }
+    return out;
+  }
+
+  function render() {
+    var ae = document.activeElement, aid = ae && ae.id;
+    renderStatus(); renderTabs(); renderBanner();
+    var v = $("view"); v.textContent = "";
+    var parts = notices();
+    if (!state.data) parts.push(h("div", { class: "empty" }, state.loadError ? "Noch kein Plan auf diesem Gerät." : "Plan wird geladen …"));
+    else parts = parts.concat(state.tab === "plan" ? viewPlan() : state.tab === "ideen" ? viewIdeen() : state.tab === "geld" ? viewGeld() : state.tab === "claude" ? viewClaude() : viewOffen());
+    parts.forEach(function (p) { if (p) v.append(p); });
+    if (aid === "msg-new" || aid === "todo-new") {
+      var n = $(aid);
+      if (n) { n.focus(); try { n.setSelectionRange(n.value.length, n.value.length); } catch (e) {} }
+    }
+  }
+
+  /* Formulare */
+  var SCHEMA = {
+    plan: { name: "Eintrag", fields: [
+      { k: "title", l: "Titel", t: "text", req: true },
+      { k: "day", l: "Tag", t: "select", o: { fr: "Freitag", sa: "Samstag", so: "Sonntag" }, half: true },
+      { k: "time", l: "Uhrzeit", t: "time", req: true, half: true },
+      { k: "cost", l: "Kosten p. P. (€)", t: "money", half: true },
+      { k: "cat", l: "Art", t: "select", o: CATS, half: true },
+      { k: "status", l: "Stand", t: "select", o: { fix: "Fix", offen: "Offen" } },
+      { k: "note", l: "Notiz", t: "area" }
+    ] },
+    ideas: { name: "Idee", fields: [
+      { k: "title", l: "Titel", t: "text", req: true },
+      { k: "tag", l: "Art", t: "select", o: TAGS, half: true },
+      { k: "verdict", l: "Stand", t: "select", o: VERDICTS, half: true },
+      { k: "price", l: "Preis", t: "text" },
+      { k: "note", l: "Notiz", t: "area" },
+      { k: "link", l: "Link (https://…)", t: "url" }
+    ] },
+    todos: { name: "Frage", fields: [{ k: "text", l: "Offene Frage", t: "text", req: true }] }
+  };
+
+  var backFocus = null;
+  function closeSheet() { var s = $("sheet"); s.hidden = true; s.textContent = ""; if (backFocus) { try { backFocus.focus(); } catch (e) {} } }
+  function showSheet(panel) {
+    backFocus = document.activeElement;
+    var s = $("sheet"); s.textContent = "";
+    s.append(h("div", { class: "scrim", onclick: closeSheet }), panel);
+    s.hidden = false;
+    var first = panel.querySelector("input,select,textarea"); if (first) first.focus();
+  }
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("sheet").hidden) closeSheet(); });
+
+  function openEditor(col, item, preset) {
+    var sc = SCHEMA[col], isNew = !item;
+    var vals = item || preset || (col === "plan" ? { day: state.day, time: "12:00", cat: "stadt", status: "offen" } : col === "ideas" ? { tag: "club", verdict: "pruefen" } : {});
+    var inputs = {};
+    var fields = sc.fields.map(function (f) {
+      var id = "f-" + col + "-" + f.k, el, cur = vals[f.k];
+      if (f.t === "select") el = h("select", { id: id }, Object.keys(f.o).map(function (k) { return h("option", { value: k, selected: cur === k ? true : null }, f.o[k]); }));
+      else if (f.t === "area") { el = h("textarea", { id: id }); el.value = cur || ""; }
+      else {
+        el = h("input", { id: id, type: f.t === "money" ? "text" : f.t, autocomplete: "off" });
+        if (f.t === "money") el.setAttribute("inputmode", "decimal");
+        el.value = f.t === "money" ? (typeof cur === "number" ? String(cur).replace(".", ",") : "") : (cur || "");
+      }
+      inputs[f.k] = el;
+      return { f: f, node: h("div", { class: "field" }, h("label", { for: id }, f.l), el) };
+    });
+    var rows = [];
+    for (var i = 0; i < fields.length;) {
+      if (fields[i].f.half && fields[i + 1] && fields[i + 1].f.half) { rows.push(h("div", { class: "two" }, fields[i].node, fields[i + 1].node)); i += 2; }
+      else { rows.push(fields[i].node); i++; }
+    }
+    var shiftBox = null;
+    if (col === "plan" && !isNew) {
+      shiftBox = h("input", { type: "checkbox", id: "f-shift" }); shiftBox.checked = state.shiftRest;
+      rows.splice(2, 0, h("label", { class: "chk-l", for: "f-shift" }, shiftBox, "Bei neuer Uhrzeit spätere Punkte am selben Tag mitverschieben"));
+    }
+    var err = h("p", { class: "err", role: "alert" });
+    var delBtn = null, armed = false;
+    if (!isNew) {
+      delBtn = h("button", { class: "btn btn-danger", type: "button" }, "Löschen");
+      delBtn.addEventListener("click", function () {
+        if (!armed) { armed = true; delBtn.textContent = "Wirklich löschen?"; return; }
+        removeItem(col, item.id); closeSheet(); change("Gelöscht: " + (item.title || item.text || "")); toast("Gelöscht");
+      });
+    }
+    var form = h("form", { class: "panel", novalidate: true },
+      h("h2", null, (isNew ? "Neu: " : "Ändern: ") + sc.name), rows, err,
+      h("div", { class: "actions" },
+        h("div", { class: "actions" }, h("button", { class: "btn btn-accent", type: "submit" }, "Speichern"), h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen")),
+        delBtn));
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = {};
+      for (var n = 0; n < sc.fields.length; n++) {
+        var f = sc.fields[n], v = inputs[f.k].value.trim();
+        if (f.req && !v) { err.textContent = f.l + " fehlt."; inputs[f.k].focus(); return; }
+        if (f.t === "money") {
+          if (v === "") { data[f.k] = null; continue; }
+          var num = parseFloat(v.replace(",", "."));
+          if (!isFinite(num) || num < 0) { err.textContent = "Kosten bitte als Zahl eingeben, zum Beispiel 12,50."; inputs[f.k].focus(); return; }
+          data[f.k] = Math.round(num * 100) / 100;
+        } else if (f.t === "url") {
+          if (v && !/^https:\/\//.test(v)) { err.textContent = "Der Link muss mit https:// beginnen."; inputs[f.k].focus(); return; }
+          data[f.k] = v;
+        } else data[f.k] = v;
+      }
+      var next = Object.assign({}, item || {}, data);
+      if (isNew) {
+        next.id = uid();
+        if (col !== "plan") next.created = Date.now();
+        if (col === "plan" || col === "todos") next.done = false;
+      }
+      var moved = 0;
+      if (col === "plan" && !isNew && shiftBox && shiftBox.checked && next.day === item.day && next.time !== item.time) {
+        var delta = toMin(next.time) - toMin(item.time), base = toMin(item.time);
+        state.data.plan.forEach(function (x) {
+          if (x.id !== item.id && x.day === item.day && toMin(x.time) >= base) { upsert("plan", Object.assign({}, x, { time: fromMin(toMin(x.time) + delta) })); moved++; }
+        });
+      }
+      upsert(col, next);
+      if (col === "plan") { state.day = next.day; state.open = next.id; }
+      closeSheet();
+      change((isNew ? "Neu: " : "Geändert: ") + (next.title || next.text) + (moved ? " (+" + moved + " verschoben)" : ""));
+      toast(moved ? "Gespeichert, " + moved + " weitere Punkte verschoben" : "Gespeichert");
+    });
+    showSheet(form);
+  }
+
+  /* Bearbeiten freischalten */
+  function openKey() {
+    if (canEdit()) {
+      var armed = false;
+      var rm = h("button", { class: "btn btn-danger", type: "button" }, "Schlüssel von diesem Gerät entfernen");
+      rm.addEventListener("click", function () {
+        if (!armed) { armed = true; rm.textContent = "Wirklich entfernen?"; return; }
+        lsSet(LS_TOKEN, null); state.token = null; state.sha = null; closeSheet(); render(); toast("Bearbeiten ist auf diesem Gerät aus");
+      });
+      showSheet(h("div", { class: "panel" },
+        h("h2", null, "Bearbeiten ist an"),
+        h("p", { class: "note" }, "Dieses Gerät speichert Änderungen direkt in " + REPO.owner + "/" + REPO.repo + ". Alle anderen sehen den Plan nur."),
+        h("div", { class: "actions" }, h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Schließen"), rm)));
+      return;
+    }
+    if (!REPO) {
+      showSheet(h("div", { class: "panel" }, h("h2", null, "Bearbeiten"),
+        h("p", { class: "note" }, "Bearbeiten geht nur, wenn die App über ihre GitHub-Pages-Adresse geöffnet ist."),
+        h("div", { class: "actions" }, h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Schließen"))));
+      return;
+    }
+    var inp = h("input", { type: "password", id: "f-token", autocomplete: "off", autocapitalize: "off", spellcheck: "false", placeholder: "github_pat_…" });
+    var err = h("p", { class: "err", role: "alert" });
+    var submit = h("button", { class: "btn btn-accent", type: "submit" }, "Freischalten");
+    var form = h("form", { class: "panel", novalidate: true },
+      h("h2", null, "Bearbeiten freischalten"),
+      h("p", { class: "note" }, "Nur für den Planer. Deine Freunde brauchen das nicht, sie sehen den Plan ohne Anmeldung."),
+      h("ol", { class: "steps" },
+        h("li", null, "Auf github.com einloggen: Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token."),
+        h("li", null, "Repository access: Only select repositories → " + REPO.repo + "."),
+        h("li", null, "Permissions → Repository permissions → Contents: Read and write."),
+        h("li", null, "Token kopieren und hier einfügen. Er bleibt nur auf diesem Gerät gespeichert."),
+        h("li", null, "Tipp: Erst die Seite zum Home-Bildschirm hinzufügen, dann den Token in der Home-Bildschirm-App eingeben. Safari und die Home-Bildschirm-App speichern getrennt.")),
+      h("div", { class: "field" }, h("label", { for: "f-token" }, "Token"), inp), err,
+      h("div", { class: "actions" }, h("div", { class: "actions" }, submit, h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen"))));
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var tok = inp.value.trim();
+      if (!tok) { err.textContent = "Bitte den Token einfügen."; return; }
+      submit.disabled = true; err.textContent = "Wird geprüft …";
+      fetchOwner(tok).then(function (res) {
+        state.token = tok; lsSet(LS_TOKEN, tok);
+        state.sha = res.sha; state.fetchedAt = Date.now(); state.loadError = null;
+        var remote = normalize(res.data);
+        state.data = pendCount() && state.data ? mergeInto(remote) : remote;
+        saveCache(); closeSheet(); render(); toast("Bearbeiten ist an");
+        if (pendCount()) queueSave(0);
+      }, function (x) {
+        submit.disabled = false;
+        err.textContent = x && x.code === "auth" ? "Der Token ist ungültig. Bitte neu kopieren."
+          : x && x.code === "noaccess" ? "Der Token hat keinen Zugriff auf " + REPO.owner + "/" + REPO.repo + ". Beim Token dieses Repo auswählen."
+          : "Prüfen fehlgeschlagen. Internet prüfen und erneut versuchen.";
+      });
+    });
+    showSheet(form);
+  }
+
+  /* Start */
+  var cached = readCache();
+  if (cached) {
+    state.data = normalize(cached.data); state.sha = cached.sha || null; state.fetchedAt = cached.at || null;
+    if (cached.pend && cached.pend.set && cached.pend.del) state.pend = cached.pend;
+  }
+  state.day = initialDay();
+  render();
+  load(true);
+  setInterval(function () {
+    renderBanner();
+    if (document.visibilityState !== "visible") return;
+    if (canEdit() && pendCount() && !state.saving && !state.saveTimer && state.saveError && /Verbindung/.test(state.saveError)) { state.saveError = null; doSave(); }
+  }, 30000);
+  setInterval(function () { if (document.visibilityState === "visible") load(false); }, 120000);
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && (!state.fetchedAt || Date.now() - state.fetchedAt > 30000)) load(false);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+{
+  "title": "Köln Wochenende",
+  "dates": {
+    "fr": "2026-11-06",
+    "sa": "2026-11-07",
+    "so": "2026-11-08"
+  },
+  "budget": 100,
+  "updated": "2026-11-05T18:45:00+01:00",
+  "plan": [
+    {
+      "id": "fr-01",
+      "day": "fr",
+      "time": "10:00",
+      "title": "Abfahrt Coburg",
+      "cat": "fahrt",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "note": "Rund 4 Stunden Fahrt. Eine Pause einplanen. Sprit läuft nicht über das Budget."
+    },
+    {
+      "id": "fr-02",
+      "day": "fr",
+      "time": "14:30",
+      "title": "Parken und Einchecken",
+      "cat": "hotel",
+      "status": "offen",
+      "cost": null,
+      "done": false,
+      "note": "Vorschlag: Tiefgarage Rotonda, Pantaleonswall 27, Höhe 1,90 m, 5 € pro 2 Std. Einen Tageshöchstpreis habe ich nicht gefunden. Das Hotel nach einem Rabatt oder einem günstigeren Parkplatz fragen. Danach bleibt das Auto stehen."
+    },
+    {
+      "id": "fr-03",
+      "day": "fr",
+      "time": "15:30",
+      "title": "Altstadt, Dom und Rheinufer",
+      "cat": "stadt",
+      "status": "fix",
+      "cost": 4.8,
+      "done": false,
+      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Das 24-Stunden-Ticket für 5 Personen kostet 14,30 €, geteilt durch 3 etwa 4,80 € pro Person."
+    },
+    {
+      "id": "fr-04",
+      "day": "fr",
+      "time": "18:30",
+      "title": "Günstig essen",
+      "cat": "essen",
+      "status": "offen",
+      "cost": 10,
+      "done": false,
+      "note": "Rund um die Zülpicher Straße und die Ringe: Pizza, Döner oder Burger. Ziel etwa 10 € pro Person."
+    },
+    {
+      "id": "fr-05",
+      "day": "fr",
+      "time": "20:30",
+      "title": "Bar 1 im Zülpicher Viertel",
+      "cat": "bar",
+      "status": "offen",
+      "cost": 6,
+      "done": false,
+      "note": "Barszene erkunden. Konkrete Bar noch auswählen. Unter 18: keine Spirituosen."
+    },
+    {
+      "id": "fr-06",
+      "day": "fr",
+      "time": "22:00",
+      "title": "Bar 2",
+      "cat": "bar",
+      "status": "offen",
+      "cost": 6,
+      "done": false,
+      "note": "Entspannt bleiben, nur 1 bis 2 Bars. Konkrete Bar noch auswählen."
+    },
+    {
+      "id": "fr-07",
+      "day": "fr",
+      "time": "23:45",
+      "title": "Zurück ins Hotel",
+      "cat": "hotel",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "note": "16 und 17 Jahre: ohne Muttizettel bis 24:00 Uhr in Lokalen. Danach braucht es eine erziehungsbeauftragte Person."
+    },
+    {
+      "id": "sa-01",
+      "day": "sa",
+      "time": "10:00",
+      "title": "Ausschlafen und Frühstück",
+      "cat": "essen",
+      "status": "offen",
+      "cost": 6,
+      "done": false,
+      "note": "Frühstück im Café, beim Bäcker oder im Hotel."
+    },
+    {
+      "id": "sa-02",
+      "day": "sa",
+      "time": "11:30",
+      "title": "Ehrenfeld: Venloer Straße und Street Food",
+      "cat": "essen",
+      "status": "offen",
+      "cost": 10,
+      "done": false,
+      "note": "Bummeln, Street Food, Vintage-Läden. Abends um 17:00 startet in Ehrenfeld der Moonlight Market in der Pattenhalle."
+    },
+    {
+      "id": "sa-03",
+      "day": "sa",
+      "time": "13:30",
+      "title": "Bowling im West Bowling",
+      "cat": "action",
+      "status": "offen",
+      "cost": 19,
+      "done": false,
+      "note": "Melatengürtel 21. 49 € pro Bahn und Stunde, bis zu 8 Personen pro Bahn, Schuhe 3 € pro Person. 36 m LED-Wand, Arcade und Billard. Etwa 19 € pro Person bei 3 Leuten. Alternative: City-Bowling, Moselstraße 44, mit Disco- und Bubble-Bowling (Preis bei Reservierung erfragen)."
+    },
+    {
+      "id": "sa-04",
+      "day": "sa",
+      "time": "15:00",
+      "title": "Pause im Hotel",
+      "cat": "chill",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "note": "Ausruhen, duschen, Energie für die Nacht."
+    },
+    {
+      "id": "sa-05",
+      "day": "sa",
+      "time": "18:30",
+      "title": "Museumsnacht: Schokoladenmuseum",
+      "cat": "kultur",
+      "status": "offen",
+      "cost": 20,
+      "done": false,
+      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Die Museumsnacht läuft am 7. Nov von 18:00 bis 01:00 Uhr und kostet 20 € (ermäßigt 10 €). Das Ticket gilt für beide Museen."
+    },
+    {
+      "id": "sa-06",
+      "day": "sa",
+      "time": "20:00",
+      "title": "Museumsnacht: Sport und Olympia Museum",
+      "cat": "kultur",
+      "status": "offen",
+      "cost": 0,
+      "done": false,
+      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten."
+    },
+    {
+      "id": "sa-07",
+      "day": "sa",
+      "time": "21:45",
+      "title": "Snack und Umziehen",
+      "cat": "essen",
+      "status": "offen",
+      "cost": 6,
+      "done": false,
+      "note": "Etwas Kleines essen, dann zum Club."
+    },
+    {
+      "id": "sa-08",
+      "day": "sa",
+      "time": "22:45",
+      "title": "Club: Trash McFly (Favorit)",
+      "cat": "club",
+      "status": "offen",
+      "cost": 16,
+      "done": false,
+      "note": "Herbrand's, Ehrenfeld. 22:30 bis 05:00 Uhr. Tickets: 9,90 € Student, 12,90 € sehr früh, 14,90 € früh, 16,90 € regulär, 18 € Abendkasse. Wichtig: Alter und Muttizettel vorher beim Club klären. Wer unter 18 ist, muss ohne Muttizettel um 24:00 Uhr raus."
+    },
+    {
+      "id": "so-01",
+      "day": "so",
+      "time": "09:30",
+      "title": "Frühstück und Auschecken",
+      "cat": "essen",
+      "status": "offen",
+      "cost": 6,
+      "done": false,
+      "note": "Zimmer räumen, Gepäck zusammenpacken."
+    },
+    {
+      "id": "so-02",
+      "day": "so",
+      "time": "11:30",
+      "title": "Auto holen und packen",
+      "cat": "fahrt",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "note": "Tiefgarage Rotonda. Ticket für die Ausfahrt bereithalten."
+    },
+    {
+      "id": "so-03",
+      "day": "so",
+      "time": "12:30",
+      "title": "Abfahrt Richtung Coburg",
+      "cat": "fahrt",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "note": "Ankunft in Coburg etwa 17:00 Uhr, mit Pause."
+    }
+  ],
+  "ideas": [
+    {
+      "id": "i-01",
+      "created": 1,
+      "title": "Trash McFly im Herbrand's",
+      "tag": "club",
+      "verdict": "drin",
+      "price": "9,90 € Student, bis 18 € Abendkasse",
+      "note": "Ehrenfeld, 22:30 bis 05:00 Uhr. Große Party mit guter Stimmung. Alter ab 16 und Muttizettel noch beim Club bestätigen lassen.",
+      "link": ""
+    },
+    {
+      "id": "i-02",
+      "created": 2,
+      "title": "Veedel Club: Y2K x Easy",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "Bis 0:00 Uhr frei",
+      "note": "Ab 23:00 Uhr, in der Nähe vom Barbarossaplatz. Günstigste Option. Altersgrenze beim Club erfragen.",
+      "link": ""
+    },
+    {
+      "id": "i-03",
+      "created": 3,
+      "title": "Helios37: Voicians Invites MUZZ",
+      "tag": "club",
+      "verdict": "pruefen",
+      "price": "Preis offen",
+      "note": "Drum and Bass, ab 23:00 Uhr. Nur wenn ihr Lust auf D&B habt. Altersgrenze erfragen.",
+      "link": ""
+    },
+    {
+      "id": "i-04",
+      "created": 4,
+      "title": "Bootshaus, CBE, Finest RnB Jamz",
+      "tag": "club",
+      "verdict": "raus",
+      "price": "",
+      "note": "Zu hohe Altersgrenze (18+). Live Music Hall: 16+ Events nehmen keinen Muttizettel an.",
+      "link": ""
+    },
+    {
+      "id": "i-05",
+      "created": 5,
+      "title": "Weihnachtsmarkt",
+      "tag": "markt",
+      "verdict": "raus",
+      "price": "",
+      "note": "Am 7. und 8. Nov hat noch keiner offen. Dom: 16.11. bis 23.12. Hafen: 13.11. bis 3.1. Heinzels Wintermärchen: 23.11. bis 10.1. Nikolausdorf: nicht bestätigt.",
+      "link": ""
+    },
+    {
+      "id": "i-06",
+      "created": 6,
+      "title": "Vintage Pop-up",
+      "tag": "markt",
+      "verdict": "pruefen",
+      "price": "",
+      "note": "Für den 7. und 8. Nov nichts Bestätigtes gefunden. Alternativen: Moonlight Market in Ehrenfeld am Sa ab 17:00 Uhr (Pattenhalle) und Mädelsflohmarkt in Wahn am So ab 11:00 Uhr (4 €), aber weit draußen.",
+      "link": ""
+    },
+    {
+      "id": "i-07",
+      "created": 7,
+      "title": "Art Cologne",
+      "tag": "kultur",
+      "verdict": "pruefen",
+      "price": "34 € Tageskarte, 29 € ermäßigt",
+      "note": "5. bis 8. Nov in der Koelnmesse. Sa 11 bis 19 Uhr, So 11 bis 18 Uhr. Bahn bis Messe/Deutz (Linien 1, 9, 3, 4). Für das Budget teuer und kollidiert mit der Museumsnacht.",
+      "link": ""
+    },
+    {
+      "id": "i-08",
+      "created": 8,
+      "title": "Nachtflug Köln",
+      "tag": "club",
+      "verdict": "raus",
+      "price": "",
+      "note": "Hohenzollernring 89 bis 93. Am 7. Nov gibt es keine Party ab 16. Nächste 16+ Termine: 11.11. und 27.11. Unter 18 nur bis 24:00 Uhr, der Muttizettel wird nicht angenommen.",
+      "link": ""
+    },
+    {
+      "id": "i-09",
+      "created": 9,
+      "title": "City-Bowling mit Disco- und Bubble-Bowling",
+      "tag": "action",
+      "verdict": "pruefen",
+      "price": "Preis bei Reservierung erfragen",
+      "note": "Moselstraße 44, 4 Bahnen. Mehr Fun-Faktor, aber weniger Platz als West Bowling.",
+      "link": ""
+    }
+  ],
+  "todos": [
+    {
+      "id": "t-01",
+      "created": 1,
+      "text": "Club anrufen: ab 16 und Muttizettel okay? (Trash McFly, Veedel Club, Helios37)",
+      "done": false
+    },
+    {
+      "id": "t-02",
+      "created": 2,
+      "text": "Hotel fragen: Parkplatz oder Rabatt für die Tiefgarage Rotonda",
+      "done": false
+    },
+    {
+      "id": "t-03",
+      "created": 3,
+      "text": "Wer ist Schüler, Azubi oder Student? Wer hat ein Deutschlandticket?",
+      "done": false
+    },
+    {
+      "id": "t-04",
+      "created": 4,
+      "text": "Museumsnacht am Abend oder Museen lieber tagsüber?",
+      "done": false
+    },
+    {
+      "id": "t-05",
+      "created": 5,
+      "text": "Bowling: West Bowling oder City-Bowling? Bahn reservieren",
+      "done": false
+    },
+    {
+      "id": "t-06",
+      "created": 6,
+      "text": "Zwei Bars für Freitag aussuchen",
+      "done": false
+    },
+    {
+      "id": "t-07",
+      "created": 7,
+      "text": "KVB 24-Stunden-Ticket für 5 Personen in der App kaufen",
+      "done": false
+    }
+  ],
+  "notes": []
+}
