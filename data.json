@@ -38,9 +38,9 @@
       "title": "Altstadt, Dom und Rheinufer",
       "cat": "stadt",
       "status": "fix",
-      "cost": 4.8,
+      "cost": 6.4,
       "done": false,
-      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Ein 24-Stunden-Ticket für 5 Personen (laut VRS-Flyer 2026: 14,30 €, geteilt durch 3 etwa 4,80 € pro Person) jetzt kaufen: Es gilt bis Samstag 15:30 und deckt Ehrenfeld und Bowling ab. Samstagabend gilt das Museumsnacht-Ticket als Fahrschein. Sonntag braucht ihr keins.",
+      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Vorher ein 24h-Ticket für 5 Personen kaufen (Köln, Preisstufe 1b: 19,20 €, geteilt durch 3 etwa 6,40 € pro Person). Es gilt bis Samstag 15:30 und deckt Ehrenfeld und Bowling ab. Samstagabend gilt das Museumsnacht-Ticket als Fahrschein. Sonntag braucht ihr keins. Alternative für das ganze Wochenende: KölnCard 48h (siehe Ideen).",
       "place": "Kölner Dom, Domkloster 4, 50667 Köln"
     },
     {
@@ -123,7 +123,7 @@
       "status": "offen",
       "cost": 19,
       "done": false,
-      "note": "Melatengürtel 21. 49 € pro Bahn und Stunde, bis zu 8 Personen pro Bahn, Schuhe 3 € pro Person. 36 m LED-Wand, Arcade und Billard. Etwa 19 € pro Person bei 3 Leuten. Alternative: City-Bowling, Moselstraße 44, mit Disco- und Bubble-Bowling (Preis bei Reservierung erfragen).",
+      "note": "West Bowling, Melatengürtel 21: die größere Anlage mit mehr Fun-Faktor, 24 Bahnen, 36 m LED-Wand, Arcade und Billard. Preis noch erfragen (früher gefunden: 49 € pro Bahn und Stunde plus 3 € Schuhe, also ca. 19 € pro Person). Bahn vorher reservieren.",
       "place": "West Bowling, Melatengürtel 21, Köln"
     },
     {
@@ -145,9 +145,9 @@
       "title": "Museumsnacht: Schokoladenmuseum",
       "cat": "kultur",
       "status": "offen",
-      "cost": 10,
+      "cost": 16.7,
       "done": false,
-      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Museumsnacht am 7. Nov von 18:00 bis 01:00 Uhr. Ticket ermäßigt 10 € (Schüler- oder Studentenausweis mitnehmen), regulär 20 €. Eine Quelle nennt ermäßigt 15 €. Das Ticket gilt für beide Museen und laut Veranstalter als VRS-Fahrschein für An- und Abreise.",
+      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Museumsnacht am 7. Nov von 18:00 bis 01:00 Uhr. Tickets: 1× ermäßigt 10 € für den Schüler (Ausweis mitnehmen), 2× regulär 20 €, im Schnitt 16,70 € pro Person. Das Ticket gilt für beide Museen und laut Veranstalter als VRS-Fahrschein für An- und Abreise.",
       "place": "Schokoladenmuseum, Am Schokoladenmuseum 1a, 50678 Köln"
     },
     {
@@ -245,26 +245,6 @@
       "place": "Veedel Club, Luxemburger Straße 37, 50674 Köln"
     },
     {
-      "id": "i-03",
-      "created": 3,
-      "title": "Helios37: Voicians Invites MUZZ",
-      "tag": "club",
-      "verdict": "pruefen",
-      "price": "Preis offen",
-      "note": "Drum and Bass, ab 23:00 Uhr. Nur wenn ihr Lust auf D&B habt. Altersgrenze erfragen.",
-      "link": ""
-    },
-    {
-      "id": "i-04",
-      "created": 4,
-      "title": "Bootshaus, CBE, Finest RnB Jamz",
-      "tag": "club",
-      "verdict": "raus",
-      "price": "",
-      "note": "Zu hohe Altersgrenze (18+). Live Music Hall: 16+ Events nehmen keinen Muttizettel an.",
-      "link": ""
-    },
-    {
       "id": "i-05",
       "created": 5,
       "title": "Weihnachtsmarkt",
@@ -272,16 +252,6 @@
       "verdict": "raus",
       "price": "",
       "note": "Am 7. und 8. Nov hat noch keiner offen. Dom: 16.11. bis 23.12. Hafen: 13.11. bis 3.1. Heinzels Wintermärchen: 23.11. bis 10.1. Nikolausdorf: nicht bestätigt.",
-      "link": ""
-    },
-    {
-      "id": "i-06",
-      "created": 6,
-      "title": "Vintage Pop-up",
-      "tag": "markt",
-      "verdict": "pruefen",
-      "price": "",
-      "note": "Für den 7. und 8. Nov nichts Bestätigtes gefunden. Mädelsflohmarkt in Wahn am So ab 11:00 Uhr (4 €) ist weit draußen. Moonlight Market siehe eigene Idee.",
       "link": ""
     },
     {
@@ -296,37 +266,6 @@
       "place": "Koelnmesse, Köln"
     },
     {
-      "id": "i-08",
-      "created": 8,
-      "title": "Nachtflug Köln",
-      "tag": "club",
-      "verdict": "raus",
-      "price": "",
-      "note": "Hohenzollernring 89 bis 93. Am 7. Nov gibt es keine Party ab 16. Nächste 16+ Termine: 11.11. und 27.11. Unter 18 nur bis 24:00 Uhr, der Muttizettel wird nicht angenommen.",
-      "link": ""
-    },
-    {
-      "id": "i-09",
-      "created": 9,
-      "title": "City-Bowling mit Disco- und Bubble-Bowling",
-      "tag": "action",
-      "verdict": "pruefen",
-      "price": "Preis bei Reservierung erfragen",
-      "note": "Moselstraße 44, 4 Bahnen. Mehr Fun-Faktor, aber weniger Platz als West Bowling.",
-      "link": "",
-      "place": "City-Bowling, Moselstraße 44, 50674 Köln"
-    },
-    {
-      "id": "i-10",
-      "created": 10,
-      "title": "Museumsnacht: Ticket gilt als Fahrschein",
-      "tag": "kultur",
-      "verdict": "drin",
-      "price": "20 €, ermäßigt 10 € (Schüler, Studenten)",
-      "note": "Laut koelner-museumsnacht.de ist ein VRS-Ticket für An- und Abreise enthalten. Dann reicht am Samstagabend das Museumsnacht-Ticket für Bus und Bahn. Eine Quelle nennt ermäßigt 15 € statt 10 €. Online kaufen, Ausweis mitnehmen.",
-      "link": "https://koelner-museumsnacht.de/tickets/"
-    },
-    {
       "id": "i-11",
       "created": 11,
       "title": "AYCD – All You Can Dance im Herbrand's",
@@ -338,101 +277,6 @@
       "place": "Herbrand's, Herbrandstraße 21, 50825 Köln"
     },
     {
-      "id": "i-12",
-      "created": 12,
-      "title": "Das Ding",
-      "tag": "club",
-      "verdict": "pruefen",
-      "price": "Günstig",
-      "note": "Eher kleiner Studentenclub mit Pop und Mitsing-Hits. Programm und Altersregel für den 7.11. nicht geprüft.",
-      "link": ""
-    },
-    {
-      "id": "i-13",
-      "created": 13,
-      "title": "Lasertag, Escape Room oder Trampolinhalle",
-      "tag": "action",
-      "verdict": "pruefen",
-      "price": "",
-      "note": "Alternative zum Bowling. Fürs Budget passt nur eine Aktivität. Konkrete Anbieter und Preise nicht geprüft.",
-      "link": ""
-    },
-    {
-      "id": "i-14",
-      "created": 14,
-      "title": "Dom mit Turmbesteigung",
-      "tag": "kultur",
-      "verdict": "pruefen",
-      "price": "Preis vor Ort prüfen",
-      "note": "Würde am Freitag zur Altstadt passen. Preis und Öffnungszeit nicht geprüft.",
-      "link": "",
-      "place": "Kölner Dom, Domkloster 4, 50667 Köln"
-    },
-    {
-      "id": "i-15",
-      "created": 15,
-      "title": "Belgisches Viertel",
-      "tag": "markt",
-      "verdict": "pruefen",
-      "price": "kostenlos",
-      "note": "Bummeln und Shoppen, liegt nah am Hotel und an den Ringen.",
-      "link": "",
-      "place": "Brüsseler Platz, 50672 Köln"
-    },
-    {
-      "id": "i-16",
-      "created": 16,
-      "title": "Moonlight Market in der Pattenhalle",
-      "tag": "markt",
-      "verdict": "pruefen",
-      "price": "",
-      "note": "Ehrenfeld, Sa 7.11. ab 17:00 Uhr. Kollidiert mit der Museumsnacht. Nicht neu geprüft.",
-      "link": "",
-      "place": "Pattenhalle, Köln-Ehrenfeld"
-    },
-    {
-      "id": "i-17",
-      "created": 17,
-      "title": "Essen: gute Gegenden",
-      "tag": "essen",
-      "verdict": "drin",
-      "price": "ca. 5 bis 10 €",
-      "note": "Kwartier Latäng (Zülpicher Straße): viele günstige Imbisse, nah am Hotel. Venloer Straße in Ehrenfeld: Street Food, international. Ringe: Fast Food bis spät in die Nacht. Frühstück und Snacks günstig in der Zimmerküche.",
-      "link": "",
-      "place": "Zülpicher Platz, 50674 Köln"
-    },
-    {
-      "id": "i-18",
-      "created": 18,
-      "title": "Barviertel: Kwartier Latäng",
-      "tag": "essen",
-      "verdict": "drin",
-      "price": "",
-      "note": "Rund um die Zülpicher Straße, das Studentenviertel. Belebt, bekannt, junges Publikum, zu Fuß vom Hotel. Bekannte Kneipen: Gilbert's Pinte, Bei Oma Kleinmann, Der Stiefel, Rosebud (Cocktails). Alternative: Belgisches Viertel um den Brüsseler Platz, eher Cocktail- und Weinbars, etwas teurer und älter.",
-      "link": "",
-      "place": "Zülpicher Straße, 50674 Köln"
-    },
-    {
-      "id": "i-19",
-      "created": 19,
-      "title": "Luxor (Luxemburger Straße)",
-      "tag": "club",
-      "verdict": "pruefen",
-      "price": "",
-      "note": "Bei partyzettel.de haben Nutzer 13-mal „Muttizettel erlaubt“ und 6-mal „nicht erlaubt“ markiert, keine offizielle Angabe. Ein Programm für den 7.11. habe ich nicht gefunden. Nah am Veedel Club, zu Fuß vom Hotel.",
-      "link": ""
-    },
-    {
-      "id": "i-20",
-      "created": 20,
-      "title": "Gewölbe: Techno-Nacht",
-      "tag": "club",
-      "verdict": "pruefen",
-      "price": "",
-      "note": "Ein Techno-Portal listet für Sa 7.11. „Top Schleuse Eins w/ ATEQ & Skee Mask – all night long“. Quelle eventuell veraltet, Alter unbekannt.",
-      "link": "https://www.morgengrau.net/"
-    },
-    {
       "id": "i-21",
       "created": 21,
       "title": "Früher in den Club (22:00 statt 22:45)",
@@ -441,78 +285,57 @@
       "price": "Frühbucher 12,90 € statt 16,90 €",
       "note": "Hinweis: Einlass bei Trash McFly laut Ticketseite ab 21:30 Uhr. Wenn der Muttizettel nicht akzeptiert wird, muss unser 17-Jähriger um 24:00 Uhr raus. Mit 22:00 Uhr hätte er zwei Stunden statt einer. Frühbucher-Ticket nur solange verfügbar.",
       "link": ""
+    },
+    {
+      "id": "i-22",
+      "created": 22,
+      "title": "KölnCard 48h statt 24h-Ticket",
+      "tag": "action",
+      "verdict": "pruefen",
+      "price": "38 € für 5 Personen, ca. 12,70 € pro Person",
+      "note": "Gilt 48 Stunden ab Start für Bus und Bahn in ganz Köln, also z. B. Fr 15:30 bis So 15:30. Damit ist auch der Heimweg vom Club nachts sicher abgedeckt. Dazu gibt es Rabatte bei Museen und Restaurants. Kostet ca. 6,30 € pro Person mehr als ein einzelnes 24h-Ticket plus Museumsnacht-Ticket. Ungeklärt ist, ob das Museumsnacht-Ticket auch nachts nach dem Club noch als Fahrschein gilt.",
+      "link": "https://www.vrs-ticketshop.de/en/KoelnCard-48h-ticket-br-5-persons.html"
     }
   ],
   "todos": [
     {
       "id": "t-01",
       "created": 1,
-      "text": "Clubs auf Instagram oder per Telefon fragen: Einlass ab 16 mit Muttizettel am 7.11.? (Trash McFly, AYCD, Veedel Club, Luxor, Helios37). Online steht bei keinem eine Zusage. Erst nach Zusage Tickets kaufen",
+      "text": "Clubs fragen: Einlass ab 16 mit Muttizettel am 7.11.? (Trash McFly, AYCD, Veedel Club)",
       "done": false
     },
     {
       "id": "t-02",
       "created": 2,
-      "text": "Parken: Hotel nach Rabatt fragen, Tagespreis der Tiefgarage Rotonda vor Ort prüfen oder ampido-Stellplatz „Parken im Pantaleonsviertel“ reservieren",
-      "done": false
-    },
-    {
-      "id": "t-03",
-      "created": 3,
-      "text": "Wer ist Schüler, Azubi oder Student? Wer hat ein Deutschlandticket?",
-      "done": false
-    },
-    {
-      "id": "t-04",
-      "created": 4,
-      "text": "Museumsnacht am Abend oder Museen lieber tagsüber?",
+      "text": "Parken: Hotel nach Rabatt fragen oder Tagespreis Rotonda prüfen",
       "done": false
     },
     {
       "id": "t-05",
-      "created": 5,
-      "text": "Bowling: West Bowling (Tel. laut Verzeichnis 0221 95424411) oder City-Bowling (0221 239275)? Preis erfragen und Bahn reservieren",
-      "done": false
-    },
-    {
-      "id": "t-06",
-      "created": 6,
-      "text": "Zwei Bars für Freitag aussuchen",
-      "done": false
-    },
-    {
-      "id": "t-07",
-      "created": 7,
-      "text": "KVB 24-Stunden-Ticket für 5 Personen (laut VRS-Flyer 2026: 14,30 €) am Freitag kaufen. Gilt bis Samstagnachmittag, abends gilt das Museumsnacht-Ticket",
+      "created": 3,
+      "text": "West Bowling anrufen (laut Verzeichnis 0221 95424411): Preis erfragen, Bahn für Sa 13:30 reservieren",
       "done": false
     },
     {
       "id": "t-08",
-      "created": 8,
-      "text": "Museumsnacht-Tickets online kaufen (ermäßigt nur mit Schüler- oder Studentenausweis)",
+      "created": 4,
+      "text": "Museumsnacht-Tickets online kaufen: 1× ermäßigt (Schüler), 2× regulär",
+      "done": false
+    },
+    {
+      "id": "t-07",
+      "created": 5,
+      "text": "Freitag: KVB 24h-Ticket für 5 Personen kaufen (19,20 €) oder KölnCard 48h (38 €)",
       "done": false
     },
     {
       "id": "t-09",
-      "created": 9,
-      "text": "Freitag nach dem Einchecken einkaufen: Frühstück für Sa und So, Snacks für Sa-Abend (Supermarkt in Hotelnähe)",
+      "created": 6,
+      "text": "Freitag einkaufen (siehe Einkaufsliste)",
       "done": false
     }
   ],
-  "notes": [
-    {
-      "id": "c-01",
-      "from": "claude",
-      "created": "2026-11-05T19:45:00+01:00",
-      "text": "Ich habe Ideen und offene Fragen aktualisiert. Den Zeitplan habe ich noch nicht geändert. Meine Vorschläge dazu stehen im Chat. Unbestätigt sind vor allem: Altersregeln aller Clubs, Bowling-Preise, Parkpreis Rotonda und der genaue Preis der KVB-Tickets."
-    },
-    {
-      "id": "c-02",
-      "from": "claude",
-      "created": "2026-11-05T20:15:00+01:00",
-      "text": "Essen steht jetzt als Gegend im Plan, Frühstück und Snack mit Zimmerküche. Bars: Kwartier Latäng. Für Clubs mit Muttizettel am 7.11. gibt es online keine Zusage, das müsst ihr direkt beim Club erfragen. Art Cologne und „früher in den Club“ stehen als Vorschlag unter Ideen."
-    }
-  ],
+  "notes": [],
   "shop": [
     {
       "id": "s-01",
