@@ -40,7 +40,7 @@
       "status": "fix",
       "cost": 4.8,
       "done": false,
-      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Das 24-Stunden-Ticket für 5 Personen kostet 14,30 €, geteilt durch 3 etwa 4,80 € pro Person.",
+      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Ein 24-Stunden-Ticket für 5 Personen (laut VRS-Flyer 2026: 14,30 €, geteilt durch 3 etwa 4,80 € pro Person) jetzt kaufen: Es gilt bis Samstag 15:30 und deckt Ehrenfeld und Bowling ab. Samstagabend gilt das Museumsnacht-Ticket als Fahrschein. Sonntag braucht ihr keins.",
       "place": "Kölner Dom, Domkloster 4, 50667 Köln"
     },
     {
@@ -145,9 +145,9 @@
       "title": "Museumsnacht: Schokoladenmuseum",
       "cat": "kultur",
       "status": "offen",
-      "cost": 20,
+      "cost": 10,
       "done": false,
-      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Die Museumsnacht läuft am 7. Nov von 18:00 bis 01:00 Uhr und kostet 20 € (ermäßigt 10 €). Das Ticket gilt für beide Museen.",
+      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Museumsnacht am 7. Nov von 18:00 bis 01:00 Uhr. Ticket ermäßigt 10 € (Schüler- oder Studentenausweis mitnehmen), regulär 20 €. Eine Quelle nennt ermäßigt 15 €. Das Ticket gilt für beide Museen und laut Veranstalter als VRS-Fahrschein für An- und Abreise.",
       "place": "Schokoladenmuseum, Am Schokoladenmuseum 1a, 50678 Köln"
     },
     {
