@@ -5,6 +5,7 @@ Plan-App für das Wochenende vom 6. bis 8. November 2026 in Köln.
 - `index.html`: die App
 - `data.json`: der ganze Plan (Zeitplan, Ideen, offene Fragen, Nachrichten an Claude)
 - `icon-180.png`: Symbol für den Home-Bildschirm
+- `sw.js`: hält die App auch ohne Netz verfügbar
 
 ## Nutzung
 

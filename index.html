@@ -77,6 +77,16 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .board-main .mono { font-size: 20px; color: var(--board-pop); margin-right: 8px; }
 .board-sub { color: var(--board-dim); font-size: 13px; }
 .board-sub b { color: var(--board-ink); font-weight: 600; }
+.board-go { color: var(--board-pop); font-weight: 600; font-size: 13px; text-decoration: none; padding: 6px 0 2px; overflow-wrap: anywhere; }
+.route { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.btn.btn-route { display: inline-flex; align-items: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.card a.btn-route { color: var(--accent-ink); font-size: 15px; }
+.place { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; min-width: 0; }
+.link-sm, .card a.link-sm { font-size: 13px; color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.vote { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.vbtn { min-height: 40px; min-width: 60px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg); font-size: 15px; }
+.vbtn.on { border-color: var(--accent); background: var(--soft); }
+.vnames { font-size: 12px; color: var(--muted); flex-basis: 100%; overflow-wrap: anywhere; }
 
 .tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--line); }
 .tab { background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 2px 9px; min-height: 44px; font-weight: 600; font-size: 14px; color: var(--muted); }
@@ -209,8 +219,8 @@ textarea { min-height: 96px; resize: vertical; }
   var TAGS = { club: "Club", action: "Action", markt: "Markt", kultur: "Museum / Kultur", essen: "Essen" };
   var TAG2CAT = { club: "club", action: "action", markt: "stadt", kultur: "kultur", essen: "essen" };
   var VERDICTS = { drin: "Im Rennen", pruefen: "Noch prüfen", raus: "Raus" };
-  var COLS = ["plan", "ideas", "todos", "notes"];
-  var LS_TOKEN = "kw-token", LS_CACHE = "kw-cache", LS_SHIFT = "kw-shift";
+  var COLS = ["plan", "ideas", "todos", "notes", "shop"];
+  var LS_TOKEN = "kw-token", LS_CACHE = "kw-cache", LS_SHIFT = "kw-shift", LS_NAME = "kw-name";
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
@@ -239,7 +249,7 @@ textarea { min-height: 96px; resize: vertical; }
     pend: { set: {}, del: {} }, inflight: null,
     saving: false, saveTimer: null, saveAgain: false, saveError: null, savedAt: null, conflicts: 0,
     loading: false, loadError: null, fetchedAt: null, lastMsg: "",
-    shiftRest: lsGet(LS_SHIFT) !== "0", draft: "", todoDraft: ""
+    shiftRest: lsGet(LS_SHIFT) !== "0", draft: "", todoDraft: "", shopDraft: ""
   };
   function canEdit() { return !!(state.token && REPO); }
 
@@ -268,6 +278,19 @@ textarea { min-height: 96px; resize: vertical; }
   function toMin(t) { var m = String(t || "0:0").split(":"); return (+m[0] || 0) * 60 + (+m[1] || 0); }
   function fromMin(n) { n = Math.max(0, Math.min(1439, n)); var hh = Math.floor(n / 60), mm = n % 60; return (hh < 10 ? "0" : "") + hh + ":" + (mm < 10 ? "0" : "") + mm; }
   function dayName(id) { var d = DAYS.filter(function (x) { return x.id === id; })[0]; return d ? d.long : id; }
+
+  /* Hinfahren: Karten-App mit Bus und Bahn */
+  function isIOS() { return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); }
+  function appleUrl(place) { return "https://maps.apple.com/?daddr=" + encodeURIComponent(place) + "&dirflg=r"; }
+  function googleUrl(place) { return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(place) + "&travelmode=transit"; }
+  function mapsUrl(place) { return isIOS() ? appleUrl(place) : googleUrl(place); }
+  function routeBox(place) {
+    if (!place) return null;
+    return h("div", { class: "route" },
+      h("a", { class: "btn btn-route", href: mapsUrl(place), target: "_blank", rel: "noopener" }, "Hinfahren"),
+      h("span", { class: "place" }, place),
+      isIOS() ? h("a", { class: "link-sm", href: googleUrl(place), target: "_blank", rel: "noopener" }, "Google Maps") : null);
+  }
 
   /* Base64 mit Umlauten */
   function toB64(str) {
@@ -522,9 +545,11 @@ textarea { min-height: 96px; resize: vertical; }
       label = "Als Nächstes"; main = [h("span", { class: "mono" }, pos.next.time), pos.next.title];
       sub = "In " + dur(ms(startOf(pos.next)) - ms(pos.now));
     }
+    var go = state.data && pos.next && pos.next.place && !pos.last
+      ? h("a", { class: "board-go", href: mapsUrl(pos.next.place), target: "_blank", rel: "noopener" }, "Hinfahren: " + pos.next.title + " →") : null;
     box.append(h("div", { class: "board" },
       h("div", { class: "board-top" }, h("span", null, label), h("span", { class: "mono" }, clockLabel(pos.now))),
-      h("div", { class: "board-main" }, main), sub ? h("div", { class: "board-sub" }, sub) : null));
+      h("div", { class: "board-main" }, main), sub ? h("div", { class: "board-sub" }, sub) : null, go));
   }
 
   function renderTabs() {
@@ -539,8 +564,10 @@ textarea { min-height: 96px; resize: vertical; }
 
   function notices() {
     var out = [];
-    if (state.saveError) out.push(h("div", { class: "notice" }, state.saveError));
-    if (state.loadError) out.push(h("div", { class: "notice" }, state.loadError));
+    var offline = navigator.onLine === false;
+    if (offline) out.push(h("div", { class: "notice" }, "Kein Netz. Du siehst den zuletzt geladenen Stand." + (canEdit() ? " Änderungen werden gespeichert, sobald du wieder online bist." : "")));
+    if (state.saveError && !offline) out.push(h("div", { class: "notice" }, state.saveError));
+    if (state.loadError && !offline) out.push(h("div", { class: "notice" }, state.loadError));
     return out;
   }
 
@@ -596,7 +623,7 @@ textarea { min-height: 96px; resize: vertical; }
           h("button", { class: "btn", type: "button", onclick: function () { upsert("plan", Object.assign({}, it, { done: !it.done })); change((it.done ? "Wieder offen: " : "Erledigt: ") + it.title); } }, it.done ? "Wieder öffnen" : "Erledigt"),
           h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("plan", it); } }, "Bearbeiten"))
       ] : null;
-      detail = h("div", { class: "detail" }, h("p", { class: "note" }, it.note || "Keine Notiz."), edit);
+      detail = h("div", { class: "detail" }, h("p", { class: "note" }, it.note || "Keine Notiz."), routeBox(it.place), edit);
     }
     return h("li", { class: cls },
       h("button", { class: "row-main", type: "button", "aria-expanded": String(open), onclick: function () { state.open = open ? null : it.id; render(); } },
@@ -615,6 +642,14 @@ textarea { min-height: 96px; resize: vertical; }
   /* Ideen */
   function viewIdeen() {
     var out = [];
+    var name = myName();
+    out.push(h("div", { class: "card" },
+      h("p", { class: "note" }, canEdit()
+        ? "Tippe 👍 oder 👎, um abzustimmen. Stimmen, die deine Freunde dir schicken, trägst du mit „Stimme für jemand anderen“ ein."
+        : "Tippe 👍 oder 👎. Deine Stimme geht als Nachricht an den Planer, der sie in die App einträgt."),
+      h("div", { class: "actions" },
+        h("span", { class: "note" }, name ? "Du stimmst ab als " + name + "." : "Noch kein Name auf diesem Gerät."),
+        h("button", { class: "link", type: "button", onclick: function () { askName(function () { render(); }); } }, name ? "Name ändern" : "Name eintragen"))));
     if (!state.data.ideas.length) out.push(h("div", { class: "empty" }, "Noch keine Ideen gesammelt."));
     ["drin", "pruefen", "raus"].forEach(function (v) {
       var list = state.data.ideas.filter(function (i) { return (i.verdict || "pruefen") === v; }).sort(function (a, b) { return (a.created || 0) - (b.created || 0); });
@@ -635,11 +670,82 @@ textarea { min-height: 96px; resize: vertical; }
       it.price ? h("div", { class: "price" }, it.price) : null,
       it.note ? h("p", { class: "note" }, it.note) : null,
       link ? h("a", { href: link, target: "_blank", rel: "noopener" }, "Mehr dazu") : null,
+      routeBox(it.place),
+      voteBox(it),
       canEdit() ? h("div", { class: "actions" },
         it.verdict !== "raus" ? h("button", { class: "btn", type: "button", onclick: function () {
           openEditor("plan", null, { title: it.title, note: [it.price, it.note].filter(Boolean).join("\n"), cat: TAG2CAT[it.tag] || "stadt", day: state.day, time: "12:00", status: "offen", cost: null });
         } }, "In den Plan") : null,
         h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("ideas", it); } }, "Bearbeiten")) : null);
+  }
+
+  /* Abstimmen */
+  function myName() { return (lsGet(LS_NAME) || "").trim(); }
+  function askName(then) {
+    var inp = h("input", { type: "text", id: "f-name", autocomplete: "given-name", maxlength: "30", placeholder: "Vorname" });
+    inp.value = myName();
+    var err = h("p", { class: "err", role: "alert" });
+    var form = h("form", { class: "panel", novalidate: true },
+      h("h2", null, "Wer bist du?"),
+      h("p", { class: "note" }, "Dein Name steht bei deinen Stimmen. Er wird nur auf diesem Gerät gemerkt."),
+      h("div", { class: "field" }, h("label", { for: "f-name" }, "Name"), inp), err,
+      h("div", { class: "actions" }, h("div", { class: "actions" },
+        h("button", { class: "btn btn-accent", type: "submit" }, "Speichern"),
+        h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen"))));
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var v = inp.value.trim();
+      if (!v) { err.textContent = "Bitte einen Namen eintragen."; return; }
+      lsSet(LS_NAME, v); closeSheet(); then(v);
+    });
+    showSheet(form);
+  }
+  function setVote(it, name, v) {
+    var cur = find("ideas", it.id) || it;
+    var votes = Object.assign({}, cur.votes || {});
+    if (votes[name] === v) delete votes[name]; else votes[name] = v;
+    upsert("ideas", Object.assign({}, cur, { votes: votes }));
+    change("Stimme von " + name + ": " + cur.title);
+  }
+  function shareVote(it, name, v) {
+    var text = name + " stimmt " + (v === "up" ? "👍 dafür" : "👎 dagegen") + ": „" + it.title + "“";
+    lsSet("kw-myvote-" + it.id, v);
+    render();
+    if (navigator.share) navigator.share({ text: text }).catch(function () {});
+    else window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener");
+  }
+  function vote(it, v) {
+    var name = myName();
+    if (!name) { askName(function () { vote(it, v); }); return; }
+    if (canEdit()) setVote(it, name, v); else shareVote(it, name, v);
+  }
+  function voteOther(it) {
+    var inp = h("input", { type: "text", id: "f-voter", autocomplete: "off", maxlength: "30", placeholder: "Name" });
+    var err = h("p", { class: "err", role: "alert" });
+    function pick(v) {
+      var n = inp.value.trim();
+      if (!n) { err.textContent = "Bitte den Namen eintragen."; inp.focus(); return; }
+      closeSheet(); setVote(it, n, v); toast("Stimme eingetragen");
+    }
+    showSheet(h("div", { class: "panel" },
+      h("h2", null, "Stimme eintragen"),
+      h("p", { class: "note" }, "Für „" + it.title + "“. Nochmal dieselbe Stimme für denselben Namen nimmt sie wieder weg."),
+      h("div", { class: "field" }, h("label", { for: "f-voter" }, "Name"), inp), err,
+      h("div", { class: "actions" }, h("div", { class: "actions" },
+        h("button", { class: "btn", type: "button", onclick: function () { pick("up"); } }, "👍 Dafür"),
+        h("button", { class: "btn", type: "button", onclick: function () { pick("down"); } }, "👎 Dagegen")),
+        h("button", { class: "btn btn-ghost", type: "button", onclick: closeSheet }, "Abbrechen"))));
+  }
+  function voteBox(it) {
+    var votes = it.votes || {}, ups = [], downs = [];
+    Object.keys(votes).sort().forEach(function (n) { if (votes[n] === "up") ups.push(n); else if (votes[n] === "down") downs.push(n); });
+    var mine = canEdit() ? votes[myName()] : lsGet("kw-myvote-" + it.id);
+    var names = [ups.length ? "Dafür: " + ups.join(", ") : null, downs.length ? "Dagegen: " + downs.join(", ") : null].filter(Boolean).join(" · ");
+    return h("div", { class: "vote" },
+      h("button", { class: "vbtn" + (mine === "up" ? " on" : ""), type: "button", "aria-pressed": String(mine === "up"), "aria-label": "Dafür stimmen", onclick: function () { vote(it, "up"); } }, "👍 ", h("span", { class: "mono" }, ups.length)),
+      h("button", { class: "vbtn" + (mine === "down" ? " on" : ""), type: "button", "aria-pressed": String(mine === "down"), "aria-label": "Dagegen stimmen", onclick: function () { vote(it, "down"); } }, "👎 ", h("span", { class: "mono" }, downs.length)),
+      canEdit() ? h("button", { class: "link", type: "button", onclick: function () { voteOther(it); } }, "Stimme für jemand anderen") : null,
+      names ? h("span", { class: "vnames" }, names) : null);
   }
 
   /* Geld */
@@ -681,30 +787,37 @@ textarea { min-height: 96px; resize: vertical; }
   }
 
   /* Offen */
-  function viewOffen() {
+  function checklist(col, inputId, draftKey, placeholder, addMsg, emptyMsg) {
     var out = [];
-    var todos = state.data.todos.slice().sort(function (a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0) || (a.created || 0) - (b.created || 0); });
+    var items = state.data[col].slice().sort(function (a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0) || (a.created || 0) - (b.created || 0); });
     if (canEdit()) {
-      var inp = h("input", { type: "text", id: "todo-new", placeholder: "Neue offene Frage", autocomplete: "off", "aria-label": "Neue offene Frage" });
-      inp.value = state.todoDraft;
-      inp.addEventListener("input", function () { state.todoDraft = inp.value; });
+      var inp = h("input", { type: "text", id: inputId, placeholder: placeholder, autocomplete: "off", "aria-label": placeholder });
+      inp.value = state[draftKey];
+      inp.addEventListener("input", function () { state[draftKey] = inp.value; });
       out.push(h("form", { class: "addbar", onsubmit: function (e) {
         e.preventDefault(); var v = inp.value.trim(); if (!v) return;
-        state.todoDraft = "";
-        upsert("todos", { id: uid(), text: v, done: false, created: Date.now() });
-        change("Neue Frage: " + v);
+        state[draftKey] = "";
+        upsert(col, { id: uid(), text: v, done: false, created: Date.now() });
+        change(addMsg + v);
       } }, inp, h("button", { class: "btn", type: "submit" }, "Hinzufügen")));
     }
-    if (!todos.length) out.push(h("div", { class: "empty" }, "Nichts mehr offen."));
-    else out.push(h("div", { class: "list" }, todos.map(function (t) {
+    if (!items.length) out.push(h("div", { class: "empty" }, emptyMsg));
+    else out.push(h("div", { class: "list" }, items.map(function (t) {
       return h("div", { class: "todo" + (t.done ? " is-done" : "") },
         h("button", { class: "chk", type: "button", role: "checkbox", "aria-checked": String(!!t.done), "aria-label": "Erledigt: " + t.text, disabled: canEdit() ? null : true, onclick: function () {
-          upsert("todos", Object.assign({}, t, { done: !t.done })); change((t.done ? "Wieder offen: " : "Erledigt: ") + t.text);
+          upsert(col, Object.assign({}, t, { done: !t.done })); change((t.done ? "Wieder offen: " : "Erledigt: ") + t.text);
         } }, h("span", { class: "box" }, t.done ? "✓" : "")),
         h("span", { class: "t" }, t.text),
-        canEdit() ? h("button", { class: "edit", type: "button", onclick: function () { openEditor("todos", t); } }, "Ändern") : null);
+        canEdit() ? h("button", { class: "edit", type: "button", onclick: function () { openEditor(col, t); } }, "Ändern") : null);
     })));
     return out;
+  }
+  function viewOffen() {
+    var shopOpen = state.data.shop.filter(function (x) { return !x.done; }).length;
+    return [h("h2", { class: "sec-title" }, "Offene Fragen")]
+      .concat(checklist("todos", "todo-new", "todoDraft", "Neue offene Frage", "Neue Frage: ", "Nichts mehr offen."))
+      .concat([h("h2", { class: "sec-title" }, "Einkaufsliste" + (state.data.shop.length ? " (" + shopOpen + " offen)" : ""))])
+      .concat(checklist("shop", "shop-new", "shopDraft", "Was fehlt noch?", "Einkauf: ", "Die Einkaufsliste ist leer."));
   }
 
   /* Claude */
@@ -742,7 +855,7 @@ textarea { min-height: 96px; resize: vertical; }
     if (!state.data) parts.push(h("div", { class: "empty" }, state.loadError ? "Noch kein Plan auf diesem Gerät." : "Plan wird geladen …"));
     else parts = parts.concat(state.tab === "plan" ? viewPlan() : state.tab === "ideen" ? viewIdeen() : state.tab === "geld" ? viewGeld() : state.tab === "claude" ? viewClaude() : viewOffen());
     parts.forEach(function (p) { if (p) v.append(p); });
-    if (aid === "msg-new" || aid === "todo-new") {
+    if (aid === "msg-new" || aid === "todo-new" || aid === "shop-new") {
       var n = $(aid);
       if (n) { n.focus(); try { n.setSelectionRange(n.value.length, n.value.length); } catch (e) {} }
     }
@@ -757,6 +870,7 @@ textarea { min-height: 96px; resize: vertical; }
       { k: "cost", l: "Kosten p. P. (€)", t: "money", half: true },
       { k: "cat", l: "Art", t: "select", o: CATS, half: true },
       { k: "status", l: "Stand", t: "select", o: { fix: "Fix", offen: "Offen" } },
+      { k: "place", l: "Ort oder Adresse (für „Hinfahren“)", t: "text" },
       { k: "note", l: "Notiz", t: "area" }
     ] },
     ideas: { name: "Idee", fields: [
@@ -765,9 +879,11 @@ textarea { min-height: 96px; resize: vertical; }
       { k: "verdict", l: "Stand", t: "select", o: VERDICTS, half: true },
       { k: "price", l: "Preis", t: "text" },
       { k: "note", l: "Notiz", t: "area" },
-      { k: "link", l: "Link (https://…)", t: "url" }
+      { k: "link", l: "Link (https://…)", t: "url" },
+      { k: "place", l: "Ort oder Adresse (für „Hinfahren“)", t: "text" }
     ] },
-    todos: { name: "Frage", fields: [{ k: "text", l: "Offene Frage", t: "text", req: true }] }
+    todos: { name: "Frage", fields: [{ k: "text", l: "Offene Frage", t: "text", req: true }] },
+    shop: { name: "Einkauf", fields: [{ k: "text", l: "Was einkaufen?", t: "text", req: true }] }
   };
 
   var backFocus = null;
@@ -841,7 +957,7 @@ textarea { min-height: 96px; resize: vertical; }
       if (isNew) {
         next.id = uid();
         if (col !== "plan") next.created = Date.now();
-        if (col === "plan" || col === "todos") next.done = false;
+        if (col === "plan" || col === "todos" || col === "shop") next.done = false;
       }
       var moved = 0;
       if (col === "plan" && !isNew && shiftBox && shiftBox.checked && next.day === item.day && next.time !== item.time) {
@@ -934,6 +1050,15 @@ textarea { min-height: 96px; resize: vertical; }
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible" && (!state.fetchedAt || Date.now() - state.fetchedAt > 30000)) load(false);
   });
+  /* Offline: App-Dateien im Speicher behalten, bei Netz sofort nachladen und speichern */
+  window.addEventListener("offline", function () { render(); });
+  window.addEventListener("online", function () {
+    if (canEdit() && pendCount() && !state.saving) { state.saveError = null; doSave(); }
+    load(true);
+  });
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  }
 })();
 </script>
 </body>

@@ -28,7 +28,8 @@
       "status": "offen",
       "cost": null,
       "done": false,
-      "note": "Vorschlag: Tiefgarage Rotonda, Pantaleonswall 27, Höhe 1,90 m, 5 € pro 2 Std. Einen Tageshöchstpreis habe ich nicht gefunden. Das Hotel nach einem Rabatt oder einem günstigeren Parkplatz fragen. Danach bleibt das Auto stehen."
+      "note": "Vorschlag: Tiefgarage Rotonda, Pantaleonswall 27, Höhe 1,90 m, 5 € pro 2 Std. Einen Tageshöchstpreis habe ich nicht gefunden. Das Hotel nach einem Rabatt oder einem günstigeren Parkplatz fragen. Danach bleibt das Auto stehen.",
+      "place": "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln"
     },
     {
       "id": "fr-03",
@@ -39,7 +40,8 @@
       "status": "fix",
       "cost": 4.8,
       "done": false,
-      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Das 24-Stunden-Ticket für 5 Personen kostet 14,30 €, geteilt durch 3 etwa 4,80 € pro Person."
+      "note": "Mit KVB zum Dom. Kostenlos: Dom von außen, Rheinufer, Hohenzollernbrücke. Das 24-Stunden-Ticket für 5 Personen kostet 14,30 €, geteilt durch 3 etwa 4,80 € pro Person.",
+      "place": "Kölner Dom, Domkloster 4, 50667 Köln"
     },
     {
       "id": "fr-04",
@@ -50,7 +52,8 @@
       "status": "offen",
       "cost": 10,
       "done": false,
-      "note": "Gegend: Zülpicher Straße und Zülpicher Platz, zu Fuß vom Hotel. Viele günstige Imbisse und Restaurants nebeneinander (Falafel, Döner, Pizza, Pasta), dort einfach etwas aussuchen. Danach seid ihr direkt im Barviertel. Ziel etwa 10 € pro Person."
+      "note": "Gegend: Zülpicher Straße und Zülpicher Platz, zu Fuß vom Hotel. Viele günstige Imbisse und Restaurants nebeneinander (Falafel, Döner, Pizza, Pasta), dort einfach etwas aussuchen. Danach seid ihr direkt im Barviertel. Ziel etwa 10 € pro Person.",
+      "place": "Zülpicher Platz, 50674 Köln"
     },
     {
       "id": "fr-05",
@@ -61,7 +64,8 @@
       "status": "offen",
       "cost": 6,
       "done": false,
-      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr."
+      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr.",
+      "place": "Zülpicher Straße, 50674 Köln"
     },
     {
       "id": "fr-06",
@@ -72,7 +76,8 @@
       "status": "offen",
       "cost": 6,
       "done": false,
-      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr."
+      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr.",
+      "place": "Zülpicher Straße, 50674 Köln"
     },
     {
       "id": "fr-07",
@@ -83,7 +88,8 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "16 und 17 Jahre: ohne Muttizettel bis 24:00 Uhr in Lokalen. Danach braucht es eine erziehungsbeauftragte Person."
+      "note": "16 und 17 Jahre: ohne Muttizettel bis 24:00 Uhr in Lokalen. Danach braucht es eine erziehungsbeauftragte Person.",
+      "place": "Pantaleonswall, 50676 Köln"
     },
     {
       "id": "sa-01",
@@ -105,7 +111,8 @@
       "status": "offen",
       "cost": 10,
       "done": false,
-      "note": "Gegend: Venloer Straße in Ehrenfeld. Bummeln, Vintage-Läden und Street Food, viele Imbisse an der Straße, dort spontan etwas aussuchen."
+      "note": "Gegend: Venloer Straße in Ehrenfeld. Bummeln, Vintage-Läden und Street Food, viele Imbisse an der Straße, dort spontan etwas aussuchen.",
+      "place": "Venloer Straße, 50823 Köln"
     },
     {
       "id": "sa-03",
@@ -116,7 +123,8 @@
       "status": "offen",
       "cost": 19,
       "done": false,
-      "note": "Melatengürtel 21. 49 € pro Bahn und Stunde, bis zu 8 Personen pro Bahn, Schuhe 3 € pro Person. 36 m LED-Wand, Arcade und Billard. Etwa 19 € pro Person bei 3 Leuten. Alternative: City-Bowling, Moselstraße 44, mit Disco- und Bubble-Bowling (Preis bei Reservierung erfragen)."
+      "note": "Melatengürtel 21. 49 € pro Bahn und Stunde, bis zu 8 Personen pro Bahn, Schuhe 3 € pro Person. 36 m LED-Wand, Arcade und Billard. Etwa 19 € pro Person bei 3 Leuten. Alternative: City-Bowling, Moselstraße 44, mit Disco- und Bubble-Bowling (Preis bei Reservierung erfragen).",
+      "place": "West Bowling, Melatengürtel 21, Köln"
     },
     {
       "id": "sa-04",
@@ -127,7 +135,8 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Ausruhen, duschen, Energie für die Nacht."
+      "note": "Ausruhen, duschen, Energie für die Nacht.",
+      "place": "Pantaleonswall, 50676 Köln"
     },
     {
       "id": "sa-05",
@@ -138,7 +147,8 @@
       "status": "offen",
       "cost": 20,
       "done": false,
-      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Die Museumsnacht läuft am 7. Nov von 18:00 bis 01:00 Uhr und kostet 20 € (ermäßigt 10 €). Das Ticket gilt für beide Museen."
+      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Die Museumsnacht läuft am 7. Nov von 18:00 bis 01:00 Uhr und kostet 20 € (ermäßigt 10 €). Das Ticket gilt für beide Museen.",
+      "place": "Schokoladenmuseum, Am Schokoladenmuseum 1a, 50678 Köln"
     },
     {
       "id": "sa-06",
@@ -149,7 +159,8 @@
       "status": "offen",
       "cost": 0,
       "done": false,
-      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten."
+      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten.",
+      "place": "Deutsches Sport & Olympia Museum, Im Zollhafen 1, 50678 Köln"
     },
     {
       "id": "sa-07",
@@ -160,7 +171,8 @@
       "status": "offen",
       "cost": 3,
       "done": false,
-      "note": "Kurz ins Hotel, mit der Küche schnell etwas Kleines machen, umziehen, dann zum Club. Geschätzt 3 € pro Person."
+      "note": "Kurz ins Hotel, mit der Küche schnell etwas Kleines machen, umziehen, dann zum Club. Geschätzt 3 € pro Person.",
+      "place": "Pantaleonswall, 50676 Köln"
     },
     {
       "id": "sa-08",
@@ -171,7 +183,8 @@
       "status": "offen",
       "cost": 16,
       "done": false,
-      "note": "Herbrand's, Ehrenfeld. 22:30 bis 05:00 Uhr. Tickets: 9,90 € Student, 12,90 € sehr früh, 14,90 € früh, 16,90 € regulär, 18 € Abendkasse. Wichtig: Alter und Muttizettel vorher beim Club klären. Wer unter 18 ist, muss ohne Muttizettel um 24:00 Uhr raus."
+      "note": "Herbrand's, Ehrenfeld. 22:30 bis 05:00 Uhr. Tickets: 9,90 € Student, 12,90 € sehr früh, 14,90 € früh, 16,90 € regulär, 18 € Abendkasse. Wichtig: Alter und Muttizettel vorher beim Club klären. Wer unter 18 ist, muss ohne Muttizettel um 24:00 Uhr raus.",
+      "place": "Herbrand's, Herbrandstraße 21, 50825 Köln"
     },
     {
       "id": "so-01",
@@ -193,7 +206,8 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Tiefgarage Rotonda. Ticket für die Ausfahrt bereithalten."
+      "note": "Tiefgarage Rotonda. Ticket für die Ausfahrt bereithalten.",
+      "place": "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln"
     },
     {
       "id": "so-03",
@@ -216,7 +230,8 @@
       "verdict": "drin",
       "price": "ab 9,90 € Student / 12,90 € sehr früh, bis 18 € Abendkasse",
       "note": "Herbrand's, Herbrandstraße 21, Ehrenfeld. Einlass laut Ticketseite ab 21:30 Uhr, Ende 05:00 Uhr. Unbestätigt: Ein Mindestalter oder ob Muttizettel akzeptiert werden, steht nirgends öffentlich. Erst nach Zusage vom Club Tickets kaufen.",
-      "link": "https://trashmcfly.de/termine/"
+      "link": "https://trashmcfly.de/termine/",
+      "place": "Herbrand's, Herbrandstraße 21, 50825 Köln"
     },
     {
       "id": "i-02",
@@ -226,7 +241,8 @@
       "verdict": "pruefen",
       "price": "Bis 0:00 Uhr frei, danach 0 bis 10 €",
       "note": "Luxemburger Straße 37, 90er/00er-Party ab 23:00 Uhr, zu Fuß vom Hotel. Der Club schreibt nur, dass das Mindestalter je nach Veranstaltung wechselt. Für den 7.11. unbestätigt.",
-      "link": ""
+      "link": "",
+      "place": "Veedel Club, Luxemburger Straße 37, 50674 Köln"
     },
     {
       "id": "i-03",
@@ -276,7 +292,8 @@
       "verdict": "pruefen",
       "price": "Mit Museumsnacht-Ticket 16 bis 19 Uhr (unbestätigt)",
       "note": "Vorschlag: Sa 16:30 statt Pause bis 18:30 zur Art Cologne in der Koelnmesse (Bahn bis Messe/Deutz), dann zum Schokoladenmuseum. Laut koeln.de ist die Art Cologne am 7.11. von 16 bis 19 Uhr als „Museum auf Zeit“ Teil der Museumsnacht. Unbestätigt, ob das Ticket schon ab 16 Uhr gilt. Einzeln 34 € (ermäßigt 29 €), das wäre zu teuer.",
-      "link": ""
+      "link": "",
+      "place": "Koelnmesse, Köln"
     },
     {
       "id": "i-08",
@@ -296,7 +313,8 @@
       "verdict": "pruefen",
       "price": "Preis bei Reservierung erfragen",
       "note": "Moselstraße 44, 4 Bahnen. Mehr Fun-Faktor, aber weniger Platz als West Bowling.",
-      "link": ""
+      "link": "",
+      "place": "City-Bowling, Moselstraße 44, 50674 Köln"
     },
     {
       "id": "i-10",
@@ -315,8 +333,9 @@
       "tag": "club",
       "verdict": "pruefen",
       "price": "Freier Eintritt",
-      "note": "Sa 7.11., Club-Bereich im Herbrand's, gemischte Musik. Altersregel unklar. Nicht neu geprüft.",
-      "link": ""
+      "note": "Sa 7.11., Club-Bereich im Herbrand's (gleiches Haus wie Trash McFly), gemischte Musik, Eintritt frei. Altersregel steht nirgends.",
+      "link": "",
+      "place": "Herbrand's, Herbrandstraße 21, 50825 Köln"
     },
     {
       "id": "i-12",
@@ -325,7 +344,7 @@
       "tag": "club",
       "verdict": "pruefen",
       "price": "Günstig",
-      "note": "Sa 7.11., Club-Bereich im Herbrand's (gleiches Haus wie Trash McFly), gemischte Musik, Eintritt frei. Altersregel steht nirgends.",
+      "note": "Eher kleiner Studentenclub mit Pop und Mitsing-Hits. Programm und Altersregel für den 7.11. nicht geprüft.",
       "link": ""
     },
     {
@@ -346,7 +365,8 @@
       "verdict": "pruefen",
       "price": "Preis vor Ort prüfen",
       "note": "Würde am Freitag zur Altstadt passen. Preis und Öffnungszeit nicht geprüft.",
-      "link": ""
+      "link": "",
+      "place": "Kölner Dom, Domkloster 4, 50667 Köln"
     },
     {
       "id": "i-15",
@@ -356,7 +376,8 @@
       "verdict": "pruefen",
       "price": "kostenlos",
       "note": "Bummeln und Shoppen, liegt nah am Hotel und an den Ringen.",
-      "link": ""
+      "link": "",
+      "place": "Brüsseler Platz, 50672 Köln"
     },
     {
       "id": "i-16",
@@ -366,7 +387,8 @@
       "verdict": "pruefen",
       "price": "",
       "note": "Ehrenfeld, Sa 7.11. ab 17:00 Uhr. Kollidiert mit der Museumsnacht. Nicht neu geprüft.",
-      "link": ""
+      "link": "",
+      "place": "Pattenhalle, Köln-Ehrenfeld"
     },
     {
       "id": "i-17",
@@ -376,7 +398,8 @@
       "verdict": "drin",
       "price": "ca. 5 bis 10 €",
       "note": "Kwartier Latäng (Zülpicher Straße): viele günstige Imbisse, nah am Hotel. Venloer Straße in Ehrenfeld: Street Food, international. Ringe: Fast Food bis spät in die Nacht. Frühstück und Snacks günstig in der Zimmerküche.",
-      "link": ""
+      "link": "",
+      "place": "Zülpicher Platz, 50674 Köln"
     },
     {
       "id": "i-18",
@@ -386,7 +409,8 @@
       "verdict": "drin",
       "price": "",
       "note": "Rund um die Zülpicher Straße, das Studentenviertel. Belebt, bekannt, junges Publikum, zu Fuß vom Hotel. Bekannte Kneipen: Gilbert's Pinte, Bei Oma Kleinmann, Der Stiefel, Rosebud (Cocktails). Alternative: Belgisches Viertel um den Brüsseler Platz, eher Cocktail- und Weinbars, etwas teurer und älter.",
-      "link": ""
+      "link": "",
+      "place": "Zülpicher Straße, 50674 Köln"
     },
     {
       "id": "i-19",
@@ -487,6 +511,56 @@
       "from": "claude",
       "created": "2026-11-05T20:15:00+01:00",
       "text": "Essen steht jetzt als Gegend im Plan, Frühstück und Snack mit Zimmerküche. Bars: Kwartier Latäng. Für Clubs mit Muttizettel am 7.11. gibt es online keine Zusage, das müsst ihr direkt beim Club erfragen. Art Cologne und „früher in den Club“ stehen als Vorschlag unter Ideen."
+    }
+  ],
+  "shop": [
+    {
+      "id": "s-01",
+      "created": 1,
+      "text": "Brötchen oder Toast",
+      "done": false
+    },
+    {
+      "id": "s-02",
+      "created": 2,
+      "text": "Butter und Aufstrich",
+      "done": false
+    },
+    {
+      "id": "s-03",
+      "created": 3,
+      "text": "Käse oder Aufschnitt",
+      "done": false
+    },
+    {
+      "id": "s-04",
+      "created": 4,
+      "text": "Müsli und Milch",
+      "done": false
+    },
+    {
+      "id": "s-05",
+      "created": 5,
+      "text": "Obst",
+      "done": false
+    },
+    {
+      "id": "s-06",
+      "created": 6,
+      "text": "Kaffee oder Tee",
+      "done": false
+    },
+    {
+      "id": "s-07",
+      "created": 7,
+      "text": "Wasser und Saft",
+      "done": false
+    },
+    {
+      "id": "s-08",
+      "created": 8,
+      "text": "Snacks für Samstagabend",
+      "done": false
     }
   ]
 }
