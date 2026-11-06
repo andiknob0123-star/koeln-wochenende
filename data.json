@@ -71,13 +71,13 @@
       "id": "fr-06",
       "day": "fr",
       "time": "22:00",
-      "title": "Bar 2",
+      "title": "Friesenplatz: Ring Bar",
       "cat": "bar",
       "status": "offen",
       "cost": 6,
       "done": false,
-      "note": "Kwartier Latäng rund um Zülpicher Straße und Zülpicher Platz: Kölns bekanntes Studenten-Barviertel, freitags voll, viele junge Leute, viele Kneipen dicht nebeneinander. Einfach durchlaufen und die Bar nehmen, die voll und gut ist. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr.",
-      "place": "Zülpicher Straße, 50674 Köln"
+      "note": "Mit der Bahn über die Ringe zum Friesenplatz (wenige Stationen ab Zülpicher Platz, das 24h-Ticket gilt). Die Ring Bar wird am Wochenende zur Disco mit Mainstream, House und Party-Klassikern. Das Friesenviertel ist freitags voll, laut und eher wild. Unbestätigt: Ob die Ring Bar abends erst ab 18 einlässt. Notfalls weiter in eine andere Bar rund um den Friesenplatz, z. B. The Grid Bar (Friesenstraße 62, Fr 19 bis 2 Uhr). Vorher in Maps prüfen, ob geöffnet. Unter 18: keine Spirituosen, ohne Muttizettel bis 24:00 Uhr.",
+      "place": "Ring Bar, Friesenwall, Köln"
     },
     {
       "id": "fr-07",
@@ -88,7 +88,7 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "16 und 17 Jahre: ohne Muttizettel bis 24:00 Uhr in Lokalen. Danach braucht es eine erziehungsbeauftragte Person.",
+      "note": "Vom Friesenplatz mit der Bahn zurück, ca. 15 Minuten. 16 und 17 Jahre: ohne Muttizettel bis 24:00 Uhr in Lokalen. Danach braucht es eine erziehungsbeauftragte Person.",
       "place": "Pantaleonswall 31, 50676 Köln"
     },
     {
