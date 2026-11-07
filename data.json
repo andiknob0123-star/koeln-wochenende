@@ -28,7 +28,7 @@
       "status": "offen",
       "cost": null,
       "done": false,
-      "note": "Auto steht in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel.",
+      "note": "Auto steht auf einem gebuchten ampido-Stellplatz in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel.",
       "place": "Stolzestraße 16, 50674 Köln"
     },
     {
@@ -106,21 +106,13 @@
       "id": "sa-02",
       "day": "sa",
       "time": "13:45",
-      "title": "Loslaufen: Hotel, Auto, Neumarkt",
+      "title": "Loslaufen: Auto, dann Bahn zum Neumarkt",
       "cat": "stadt",
       "status": "fix",
       "cost": 0,
       "done": false,
-      "place": "Neumarkt, 50667 Köln",
-      "note": "Erst kurz zum Auto (Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel), dann ca. 20 Minuten zum Neumarkt. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse.",
-      "walk": [
-        "Pantaleonswall 31, 50676 Köln",
-        "50.925180,6.938366",
-        "St. Aposteln, Neumarkt 30, 50667 Köln",
-        "Antoniterkirche, Schildergasse 57, 50667 Köln",
-        "Alter Markt, 50667 Köln",
-        "Kölner Dom, Domkloster 4, 50667 Köln"
-      ]
+      "place": "Stolzestraße 16, 50674 Köln",
+      "note": "Zu Fuß ca. 8 Minuten zum Auto (ampido-Stellplatz, Stolzestraße 16). Von dort nicht laufen (ca. 20 Min.), sondern ein paar Minuten zum Barbarossaplatz und mit der Bahn zum Neumarkt, ca. 5 Minuten Fahrt. „Hinfahren“ beim nächsten Punkt zeigt die genaue Verbindung. Am Neumarkt: St. Aposteln und die Neumarkt Galerie."
     },
     {
       "id": "sa-09",
@@ -144,7 +136,7 @@
       "cost": 0,
       "done": false,
       "place": "Alter Markt, 50667 Köln",
-      "note": "Am Ende der Schildergasse links in die Hohe Straße Richtung Dom. Abstecher nach rechts über die Gürzenichstraße zum Alter Markt: Historisches Rathaus, Groß St. Martin und die Figuren Tünnes und Schäl (Tünnes' Nase reiben bringt Glück). Kurzer Blick auf den Rhein, dann durch die Gassen zum Dom."
+      "note": "Am Ende der Schildergasse links in die Hohe Straße Richtung Dom. Abstecher nach rechts über die Gürzenichstraße zum Alter Markt: Historisches Rathaus, Groß St. Martin und die Figuren Tünnes und Schäl (Tünnes' Nase reiben bringt Glück). Kurzer Blick auf den Rhein, dann durch die Gassen zum Dom. Alles Fußgängerzone, hier ist Laufen am schnellsten."
     },
     {
       "id": "sa-11",
@@ -156,7 +148,7 @@
       "cost": 0,
       "done": false,
       "place": "Kölner Dom, Domkloster 4, 50667 Köln",
-      "note": "Eintritt frei, drinnen ca. 15 Minuten. Während Gottesdiensten ist das Herumlaufen eingeschränkt. Zurück zum Hotel mit der Bahn ab Dom/Hauptbahnhof: oben auf „Zum Hotel navigieren“ tippen. Euer 24h-Ticket von Freitag ist vermutlich schon abgelaufen."
+      "note": "Eintritt frei, drinnen ca. 15 Minuten. Während Gottesdiensten ist das Herumlaufen eingeschränkt. Zurück zum Hotel mit der Bahn ab Dom/Hauptbahnhof (schneller als 25 Min. zu Fuß): oben auf „Zum Hotel navigieren“ tippen."
     },
     {
       "id": "sa-04",
@@ -177,10 +169,10 @@
       "title": "Mit der Bahn nach Ehrenfeld",
       "cat": "fahrt",
       "status": "fix",
-      "cost": 6.4,
+      "cost": 0,
       "done": false,
       "place": "Venloer Straße, 50823 Köln",
-      "note": "Vorher ein neues KVB 24h-Ticket für 5 Personen kaufen (19,20 €, geteilt durch 3 etwa 6,40 € pro Person). Es gilt bis Sonntagabend, also auch für den Heimweg vom Club. Fahrt vom Hotel ca. 20 Minuten."
+      "note": "Mit der Bahn nach Ehrenfeld, ca. 20 Minuten. Mit euren Tickets braucht ihr kein extra KVB-Ticket. „Hinfahren“ zeigt die Verbindung."
     },
     {
       "id": "sa-14",
@@ -204,7 +196,7 @@
       "cost": 6,
       "done": false,
       "place": "The MĀX, Widdersdorfer Straße 198, 50825 Köln",
-      "note": "Winterlicher Glühwein-Garten auf dem Gelände von The MĀX, heute Eröffnung. Sa 14 bis 22 Uhr, Eintritt frei. Vom Abendessen in Ehrenfeld nur ein kurzes Stück. Glühwein ist ab 16 erlaubt, sonst Kinderpunsch (geschätzt 6 €). Um 22 Uhr schließt der Garten, dann zu Fuß ca. 10 Minuten zum Herbrand's. Eisstock-Bahnen nur mit Buchung (ab 65 €)."
+      "note": "Winterlicher Glühwein-Garten auf dem Gelände von The MĀX, heute Eröffnung. Sa 14 bis 22 Uhr, Eintritt frei. Vom Abendessen in Ehrenfeld nur ein kurzes Stück, „Hinfahren“ zeigt, ob Bahn oder Laufen schneller ist. Glühwein ist ab 16 erlaubt, sonst Kinderpunsch (geschätzt 6 €). Um 22 Uhr schließt der Garten, dann zu Fuß ca. 10 Minuten zum Herbrand's. Eisstock-Bahnen nur mit Buchung (ab 65 €)."
     },
     {
       "id": "sa-08",
@@ -215,7 +207,7 @@
       "status": "offen",
       "cost": 16,
       "done": false,
-      "note": "Herbrand's, Ehrenfeld. 22:30 bis 05:00 Uhr. Tickets: 9,90 € Student, 12,90 € sehr früh, 14,90 € früh, 16,90 € regulär, 18 € Abendkasse. Wichtig: Alter und Muttizettel vorher beim Club klären. Wer unter 18 ist, muss ohne Muttizettel um 24:00 Uhr raus.",
+      "note": "Herbrand's, Ehrenfeld. 22:30 bis 05:00 Uhr. Tickets: 9,90 € Student, 12,90 € sehr früh, 14,90 € früh, 16,90 € regulär, 18 € Abendkasse. Wichtig: Alter und Muttizettel vorher beim Club klären. Wer unter 18 ist, muss ohne Muttizettel um 24:00 Uhr raus. Heimweg nachts mit Bahn oder Nachtbus, oben auf „Zum Hotel navigieren“ tippen.",
       "place": "Herbrand's, Herbrandstraße 21, 50825 Köln"
     },
     {
@@ -238,7 +230,7 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Auto steht in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel (Pantaleonswall 31).",
+      "note": "Auto steht auf dem ampido-Stellplatz in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel. Zu Fuß ist hier schneller als mit der Bahn.",
       "place": "Stolzestraße 16, 50674 Köln"
     },
     {
@@ -306,16 +298,6 @@
       "price": "Frühbucher 12,90 € statt 16,90 €",
       "note": "Hinweis: Einlass bei Trash McFly laut Ticketseite ab 21:30 Uhr. Wenn der Muttizettel nicht akzeptiert wird, muss unser 17-Jähriger um 24:00 Uhr raus. Mit 22:00 Uhr hätte er zwei Stunden statt einer. Frühbucher-Ticket nur solange verfügbar.",
       "link": ""
-    },
-    {
-      "id": "i-22",
-      "created": 22,
-      "title": "KölnCard 48h statt 24h-Ticket",
-      "tag": "action",
-      "verdict": "pruefen",
-      "price": "38 € für 5 Personen, ca. 12,70 € pro Person",
-      "note": "Gilt 48 Stunden ab Start für Bus und Bahn in ganz Köln, also z. B. Fr 15:30 bis So 15:30. Damit ist auch der Heimweg vom Club nachts sicher abgedeckt. Dazu gibt es Rabatte bei Museen und Restaurants. Kostet ca. 6,30 € pro Person mehr als ein einzelnes 24h-Ticket plus Museumsnacht-Ticket. Ungeklärt ist, ob das Museumsnacht-Ticket auch nachts nach dem Club noch als Fahrschein gilt.",
-      "link": "https://www.vrs-ticketshop.de/en/KoelnCard-48h-ticket-br-5-persons.html"
     }
   ],
   "todos": [
@@ -328,25 +310,13 @@
     {
       "id": "t-02",
       "created": 2,
-      "text": "Parken Stolzestraße 16: Schilder prüfen, ob ein Parkschein nötig ist und wie lange er gilt",
-      "done": false
-    },
-    {
-      "id": "t-07",
-      "created": 5,
-      "text": "Freitag: KVB 24h-Ticket für 5 Personen kaufen (19,20 €) oder KölnCard 48h (38 €)",
+      "text": "ampido-Stellplatz Stolzestraße 16: In der Buchung prüfen, bis wann er gebucht ist, damit ihr Sonntag rechtzeitig rausfahrt",
       "done": false
     },
     {
       "id": "t-09",
       "created": 6,
       "text": "Freitag einkaufen (siehe Einkaufsliste)",
-      "done": false
-    },
-    {
-      "id": "t-10",
-      "created": 10,
-      "text": "Heute Abend: neues KVB 24h-Ticket für 5 Personen kaufen (19,20 €)",
       "done": false
     }
   ],
