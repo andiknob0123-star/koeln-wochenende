@@ -77,11 +77,9 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .board-main .mono { font-size: 20px; color: var(--board-pop); margin-right: 8px; }
 .board-sub { color: var(--board-dim); font-size: 13px; }
 .board-sub b { color: var(--board-ink); font-weight: 600; }
-.nav-btns { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 10px; }
-.btn.car-btn { display: flex; align-items: center; justify-content: center; min-height: 48px; text-decoration: none; background: transparent; color: var(--ink); border-color: var(--line); font-size: 16px; text-align: center; }
 .btn.walk-btn { display: inline-flex; align-items: center; text-decoration: none; background: var(--ink); color: var(--bg); }
 .card a.walk-btn { color: var(--bg); }
-.btn.hotel-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; text-align: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-size: 16px; }
+.btn.hotel-btn { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; min-height: 48px; text-align: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-size: 16px; }
 .board-go { color: var(--board-pop); font-weight: 600; font-size: 13px; text-decoration: none; padding: 6px 0 2px; overflow-wrap: anywhere; }
 .route { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
 .btn.btn-route { display: inline-flex; align-items: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -198,10 +196,7 @@ textarea { min-height: 96px; resize: vertical; }
   <header class="head">
     <h1>Köln Wochenende</h1>
     <p id="sub">Fr 6. – So 8. Nov 2026 · 3 Leute</p>
-    <div class="nav-btns">
-      <a id="hotel" class="btn hotel-btn" href="#" target="_blank" rel="noopener">Zum Hotel navigieren</a>
-      <a id="car" class="btn car-btn" href="#" target="_blank" rel="noopener">Zum Auto</a>
-    </div>
+    <a id="hotel" class="btn hotel-btn" href="#" target="_blank" rel="noopener">Zum Hotel navigieren</a>
     <div class="status" id="status"></div>
   </header>
   <section id="banner" aria-live="polite"></section>
@@ -215,7 +210,6 @@ textarea { min-height: 96px; resize: vertical; }
 (function () {
   "use strict";
   var DEFAULT_HOTEL = "Pantaleonswall 31, 50676 Köln";
-  var DEFAULT_CAR = "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln";
   var DEFAULT_DATES = { fr: "2026-11-06", sa: "2026-11-07", so: "2026-11-08" };
   var DAYS = [
     { id: "fr", short: "Fr", long: "Freitag", date: "6. Nov" },
@@ -792,8 +786,6 @@ textarea { min-height: 96px; resize: vertical; }
   function renderHotel() {
     var hotel = (state.data && state.data.hotel) || DEFAULT_HOTEL;
     var a = $("hotel"); a.href = mapsUrl(hotel); a.setAttribute("aria-label", "Zum Hotel navigieren: " + hotel);
-    var car = (state.data && state.data.car) || DEFAULT_CAR;
-    var c = $("car"); c.href = mapsUrl(car); c.setAttribute("aria-label", "Zum Auto navigieren: " + car);
   }
   function render() {
     var ae = document.activeElement, aid = ae && ae.id;
