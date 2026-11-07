@@ -77,7 +77,11 @@ button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .board-main .mono { font-size: 20px; color: var(--board-pop); margin-right: 8px; }
 .board-sub { color: var(--board-dim); font-size: 13px; }
 .board-sub b { color: var(--board-ink); font-weight: 600; }
-.btn.hotel-btn { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; min-height: 48px; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-size: 16px; }
+.nav-btns { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 10px; }
+.btn.car-btn { display: flex; align-items: center; justify-content: center; min-height: 48px; text-decoration: none; background: transparent; color: var(--ink); border-color: var(--line); font-size: 16px; text-align: center; }
+.btn.walk-btn { display: inline-flex; align-items: center; text-decoration: none; background: var(--ink); color: var(--bg); }
+.card a.walk-btn { color: var(--bg); }
+.btn.hotel-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; text-align: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-size: 16px; }
 .board-go { color: var(--board-pop); font-weight: 600; font-size: 13px; text-decoration: none; padding: 6px 0 2px; overflow-wrap: anywhere; }
 .route { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
 .btn.btn-route { display: inline-flex; align-items: center; text-decoration: none; background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -194,7 +198,10 @@ textarea { min-height: 96px; resize: vertical; }
   <header class="head">
     <h1>Köln Wochenende</h1>
     <p id="sub">Fr 6. – So 8. Nov 2026 · 3 Leute</p>
-    <a id="hotel" class="btn hotel-btn" href="#" target="_blank" rel="noopener">Zum Hotel navigieren</a>
+    <div class="nav-btns">
+      <a id="hotel" class="btn hotel-btn" href="#" target="_blank" rel="noopener">Zum Hotel navigieren</a>
+      <a id="car" class="btn car-btn" href="#" target="_blank" rel="noopener">Zum Auto</a>
+    </div>
     <div class="status" id="status"></div>
   </header>
   <section id="banner" aria-live="polite"></section>
@@ -208,6 +215,7 @@ textarea { min-height: 96px; resize: vertical; }
 (function () {
   "use strict";
   var DEFAULT_HOTEL = "Pantaleonswall 31, 50676 Köln";
+  var DEFAULT_CAR = "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln";
   var DEFAULT_DATES = { fr: "2026-11-06", sa: "2026-11-07", so: "2026-11-08" };
   var DAYS = [
     { id: "fr", short: "Fr", long: "Freitag", date: "6. Nov" },
@@ -283,6 +291,17 @@ textarea { min-height: 96px; resize: vertical; }
   function appleUrl(place) { return "https://maps.apple.com/?daddr=" + encodeURIComponent(place) + "&dirflg=r"; }
   function googleUrl(place) { return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(place) + "&travelmode=transit"; }
   function mapsUrl(place) { return isIOS() ? appleUrl(place) : googleUrl(place); }
+  function walkUrl(stops) {
+    var e = encodeURIComponent;
+    return "https://www.google.com/maps/dir/?api=1&origin=" + e(stops[0]) + "&destination=" + e(stops[stops.length - 1]) +
+      (stops.length > 2 ? "&waypoints=" + e(stops.slice(1, -1).join("|")) : "") + "&travelmode=walking";
+  }
+  function walkBox(stops) {
+    if (!Array.isArray(stops) || stops.length < 2) return null;
+    return h("div", { class: "route" },
+      h("a", { class: "btn walk-btn", href: walkUrl(stops), target: "_blank", rel: "noopener" }, "Ganze Route zu Fuß (Google Maps)"),
+      h("span", { class: "place" }, stops.map(function (x) { return x.split(",")[0]; }).join(" → ")));
+  }
   function routeBox(place) {
     if (!place) return null;
     return h("div", { class: "route" },
@@ -544,8 +563,10 @@ textarea { min-height: 96px; resize: vertical; }
       label = "Als Nächstes"; main = [h("span", { class: "mono" }, pos.next.time), pos.next.title];
       sub = "In " + dur(ms(startOf(pos.next)) - ms(pos.now));
     }
-    var go = state.data && pos.next && pos.next.place && !pos.last
-      ? h("a", { class: "board-go", href: mapsUrl(pos.next.place), target: "_blank", rel: "noopener" }, "Hinfahren: " + pos.next.title + " →") : null;
+    var nx = state.data && !pos.last ? pos.next : null;
+    var go = nx && Array.isArray(nx.walk) && nx.walk.length > 1
+      ? h("a", { class: "board-go", href: walkUrl(nx.walk), target: "_blank", rel: "noopener" }, "Ganze Route zu Fuß: " + nx.title + " →")
+      : nx && nx.place ? h("a", { class: "board-go", href: mapsUrl(nx.place), target: "_blank", rel: "noopener" }, "Hinfahren: " + nx.title + " →") : null;
     box.append(h("div", { class: "board" },
       h("div", { class: "board-top" }, h("span", null, label), h("span", { class: "mono" }, clockLabel(pos.now))),
       h("div", { class: "board-main" }, main), sub ? h("div", { class: "board-sub" }, sub) : null, go));
@@ -622,7 +643,7 @@ textarea { min-height: 96px; resize: vertical; }
           h("button", { class: "btn", type: "button", onclick: function () { upsert("plan", Object.assign({}, it, { done: !it.done })); change((it.done ? "Wieder offen: " : "Erledigt: ") + it.title); } }, it.done ? "Wieder öffnen" : "Erledigt"),
           h("button", { class: "btn btn-ghost", type: "button", onclick: function () { openEditor("plan", it); } }, "Bearbeiten"))
       ] : null;
-      detail = h("div", { class: "detail" }, h("p", { class: "note" }, it.note || "Keine Notiz."), routeBox(it.place), edit);
+      detail = h("div", { class: "detail" }, h("p", { class: "note" }, it.note || "Keine Notiz."), walkBox(it.walk), routeBox(it.place), edit);
     }
     return h("li", { class: cls },
       h("button", { class: "row-main", type: "button", "aria-expanded": String(open), onclick: function () { state.open = open ? null : it.id; render(); } },
@@ -771,6 +792,8 @@ textarea { min-height: 96px; resize: vertical; }
   function renderHotel() {
     var hotel = (state.data && state.data.hotel) || DEFAULT_HOTEL;
     var a = $("hotel"); a.href = mapsUrl(hotel); a.setAttribute("aria-label", "Zum Hotel navigieren: " + hotel);
+    var car = (state.data && state.data.car) || DEFAULT_CAR;
+    var c = $("car"); c.href = mapsUrl(car); c.setAttribute("aria-label", "Zum Auto navigieren: " + car);
   }
   function render() {
     var ae = document.activeElement, aid = ae && ae.id;

@@ -112,7 +112,14 @@
       "cost": 0,
       "done": false,
       "place": "Neumarkt, 50667 Köln",
-      "note": "Zu Fuß ca. 15 Minuten vom Hotel. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse."
+      "note": "Zu Fuß ca. 15 Minuten vom Hotel. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse.",
+      "walk": [
+        "Pantaleonswall 31, 50676 Köln",
+        "St. Aposteln, Neumarkt 30, 50667 Köln",
+        "Antoniterkirche, Schildergasse 57, 50667 Köln",
+        "Alter Markt, 50667 Köln",
+        "Kölner Dom, Domkloster 4, 50667 Köln"
+      ]
     },
     {
       "id": "sa-09",
@@ -159,7 +166,7 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Ausruhen, duschen und schon für den Club umziehen. Danach geht es ohne Zwischenstopp im Hotel weiter: Abendessen, Glühgarten und Club in Ehrenfeld.",
+      "note": "Ausruhen, duschen und schon für den Club umziehen. Wer noch etwas aus dem Auto braucht: Die Tiefgarage Rotonda (Pantaleonswall 27) liegt direkt neben dem Hotel und hat rund um die Uhr offen. Parkticket mitnehmen. Danach geht es ohne Zwischenstopp im Hotel weiter: Abendessen, Glühgarten und Club in Ehrenfeld.",
       "place": "Pantaleonswall 31, 50676 Köln"
     },
     {
@@ -393,5 +400,6 @@
       "done": false
     }
   ],
-  "hotel": "Pantaleonswall 31, 50676 Köln"
+  "hotel": "Pantaleonswall 31, 50676 Köln",
+  "car": "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln"
 }
