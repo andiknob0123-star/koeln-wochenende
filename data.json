@@ -159,44 +159,44 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Ausruhen, duschen und schon für den Club umziehen. Danach geht es ohne Zwischenstopp im Hotel weiter: Museumsnacht, Glühgarten, Club.",
+      "note": "Ausruhen, duschen und schon für den Club umziehen. Danach geht es ohne Zwischenstopp im Hotel weiter: Abendessen, Glühgarten und Club in Ehrenfeld.",
       "place": "Pantaleonswall 31, 50676 Köln"
     },
     {
-      "id": "sa-05",
+      "id": "sa-13",
       "day": "sa",
-      "time": "18:30",
-      "title": "Museumsnacht: Schokoladenmuseum",
-      "cat": "kultur",
-      "status": "offen",
-      "cost": 16.7,
+      "time": "18:00",
+      "title": "Mit der Bahn nach Ehrenfeld",
+      "cat": "fahrt",
+      "status": "fix",
+      "cost": 6.4,
       "done": false,
-      "note": "Am Schokoladenmuseum 1a. Gläserne Schokoladenfabrik, Schokobrunnen, Dachterrasse mit Aussicht. Museumsnacht am 7. Nov von 18:00 bis 01:00 Uhr. Tickets: 1× ermäßigt 10 € für den Schüler (Ausweis mitnehmen), 2× regulär 20 €, im Schnitt 16,70 € pro Person. Das Ticket gilt für beide Museen und laut Veranstalter als VRS-Fahrschein für An- und Abreise.",
-      "place": "Schokoladenmuseum, Am Schokoladenmuseum 1a, 50678 Köln"
+      "place": "Venloer Straße, 50823 Köln",
+      "note": "Vorher ein neues KVB 24h-Ticket für 5 Personen kaufen (19,20 €, geteilt durch 3 etwa 6,40 € pro Person). Es gilt bis Sonntagabend, also auch für den Heimweg vom Club. Fahrt vom Hotel ca. 20 Minuten."
     },
     {
-      "id": "sa-06",
+      "id": "sa-14",
       "day": "sa",
-      "time": "20:00",
-      "title": "Museumsnacht: Sport und Olympia Museum",
-      "cat": "kultur",
+      "time": "18:30",
+      "title": "Abendessen: Hemmer (Kneipe mit Küche)",
+      "cat": "essen",
       "status": "offen",
-      "cost": 0,
+      "cost": 13,
       "done": false,
-      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten. Gegen 20:45 weiter zum Glühgarten in Ehrenfeld.",
-      "place": "Deutsches Sport & Olympia Museum, Im Zollhafen 1, 50678 Köln"
+      "place": "Hemmer, Köln-Ehrenfeld",
+      "note": "Ehrliche Eckkneipe in Ehrenfeld mit überraschend gutem Essen und laut Mit Vergnügen sehr gutem Preis-Leistungs-Verhältnis. Restaurant und Bar in einem. Samstagabend vorher anrufen oder in Maps prüfen, ob geöffnet und ob ein Tisch frei ist. Preis geschätzt. Plan B: Qlosterstüffje (Schnitzel, sehr günstig) oder Kebapland auf der Venloer Straße (Grill-Kebab, Kult, oft Schlange)."
     },
     {
       "id": "sa-12",
       "day": "sa",
-      "time": "21:15",
+      "time": "20:15",
       "title": "Glühgarten Ehrenfeld (The MĀX)",
       "cat": "essen",
       "status": "fix",
       "cost": 6,
       "done": false,
       "place": "The MĀX, Widdersdorfer Straße 198, 50825 Köln",
-      "note": "Winterlicher Glühwein-Garten auf dem Gelände von The MĀX, heute Eröffnung. Sa 14 bis 22 Uhr, Eintritt frei. Gegen 20:45 vom Sportmuseum mit der Bahn los, ca. 30 Minuten, das Museumsnacht-Ticket gilt als Fahrschein. Hier etwas essen und trinken (geschätzt 6 €). Glühwein ist ab 16 erlaubt, sonst Kinderpunsch. Um 22 Uhr schließt der Garten, dann zu Fuß ca. 10 Minuten zum Herbrand's. Eisstock-Bahnen nur mit Buchung (ab 65 €)."
+      "note": "Winterlicher Glühwein-Garten auf dem Gelände von The MĀX, heute Eröffnung. Sa 14 bis 22 Uhr, Eintritt frei. Vom Abendessen in Ehrenfeld nur ein kurzes Stück. Glühwein ist ab 16 erlaubt, sonst Kinderpunsch (geschätzt 6 €). Um 22 Uhr schließt der Garten, dann zu Fuß ca. 10 Minuten zum Herbrand's. Eisstock-Bahnen nur mit Buchung (ab 65 €)."
     },
     {
       "id": "sa-08",
@@ -279,17 +279,6 @@
       "link": ""
     },
     {
-      "id": "i-07",
-      "created": 7,
-      "title": "Vorschlag: Art Cologne vor der Museumsnacht",
-      "tag": "kultur",
-      "verdict": "pruefen",
-      "price": "Mit Museumsnacht-Ticket 16 bis 19 Uhr (unbestätigt)",
-      "note": "Vorschlag: Sa 16:30 statt Pause bis 18:30 zur Art Cologne in der Koelnmesse (Bahn bis Messe/Deutz), dann zum Schokoladenmuseum. Laut koeln.de ist die Art Cologne am 7.11. von 16 bis 19 Uhr als „Museum auf Zeit“ Teil der Museumsnacht. Unbestätigt, ob das Ticket schon ab 16 Uhr gilt. Einzeln 34 € (ermäßigt 29 €), das wäre zu teuer.",
-      "link": "",
-      "place": "Koelnmesse, Köln"
-    },
-    {
       "id": "i-11",
       "created": 11,
       "title": "AYCD – All You Can Dance im Herbrand's",
@@ -335,12 +324,6 @@
       "done": false
     },
     {
-      "id": "t-08",
-      "created": 4,
-      "text": "Museumsnacht-Tickets online kaufen: 1× ermäßigt (Schüler), 2× regulär",
-      "done": false
-    },
-    {
       "id": "t-07",
       "created": 5,
       "text": "Freitag: KVB 24h-Ticket für 5 Personen kaufen (19,20 €) oder KölnCard 48h (38 €)",
@@ -350,6 +333,12 @@
       "id": "t-09",
       "created": 6,
       "text": "Freitag einkaufen (siehe Einkaufsliste)",
+      "done": false
+    },
+    {
+      "id": "t-10",
+      "created": 10,
+      "text": "Heute Abend: neues KVB 24h-Ticket für 5 Personen kaufen (19,20 €)",
       "done": false
     }
   ],
