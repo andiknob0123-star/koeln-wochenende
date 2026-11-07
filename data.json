@@ -154,12 +154,12 @@
       "id": "sa-04",
       "day": "sa",
       "time": "16:00",
-      "title": "Pause im Hotel",
+      "title": "Pause im Hotel und Umziehen",
       "cat": "chill",
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Ausruhen, duschen, Energie für die Nacht.",
+      "note": "Ausruhen, duschen und schon für den Club umziehen. Danach geht es ohne Zwischenstopp im Hotel weiter: Museumsnacht, Glühgarten, Club.",
       "place": "Pantaleonswall 31, 50676 Köln"
     },
     {
@@ -183,20 +183,20 @@
       "status": "offen",
       "cost": 0,
       "done": false,
-      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten.",
+      "note": "Im Zollhafen 1. Windkanal, Spielfelder auf dem Dach, Skate-Bereich. Im Museumsnacht-Ticket enthalten. Gegen 20:45 weiter zum Glühgarten in Ehrenfeld.",
       "place": "Deutsches Sport & Olympia Museum, Im Zollhafen 1, 50678 Köln"
     },
     {
-      "id": "sa-07",
+      "id": "sa-12",
       "day": "sa",
-      "time": "21:45",
-      "title": "Snack und Umziehen im Hotel",
+      "time": "21:15",
+      "title": "Glühgarten Ehrenfeld (The MĀX)",
       "cat": "essen",
-      "status": "offen",
-      "cost": 3,
+      "status": "fix",
+      "cost": 6,
       "done": false,
-      "note": "Kurz ins Hotel, mit der Küche schnell etwas Kleines machen, umziehen, dann zum Club. Geschätzt 3 € pro Person.",
-      "place": "Pantaleonswall 31, 50676 Köln"
+      "place": "The MĀX, Widdersdorfer Straße 198, 50825 Köln",
+      "note": "Winterlicher Glühwein-Garten auf dem Gelände von The MĀX, heute Eröffnung. Sa 14 bis 22 Uhr, Eintritt frei. Gegen 20:45 vom Sportmuseum mit der Bahn los, ca. 30 Minuten, das Museumsnacht-Ticket gilt als Fahrschein. Hier etwas essen und trinken (geschätzt 6 €). Glühwein ist ab 16 erlaubt, sonst Kinderpunsch. Um 22 Uhr schließt der Garten, dann zu Fuß ca. 10 Minuten zum Herbrand's. Eisstock-Bahnen nur mit Buchung (ab 65 €)."
     },
     {
       "id": "sa-08",
