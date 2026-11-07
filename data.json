@@ -105,14 +105,50 @@
     {
       "id": "sa-02",
       "day": "sa",
-      "time": "13:30",
-      "title": "Ehrenfeld: Venloer Straße und Street Food",
-      "cat": "essen",
-      "status": "offen",
+      "time": "13:45",
+      "title": "Loslaufen: Hotel zum Neumarkt",
+      "cat": "stadt",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "place": "Neumarkt, 50667 Köln",
+      "note": "Zu Fuß ca. 15 Minuten vom Hotel. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse."
+    },
+    {
+      "id": "sa-09",
+      "day": "sa",
+      "time": "14:00",
+      "title": "Shoppen: Schildergasse",
+      "cat": "stadt",
+      "status": "fix",
       "cost": 10,
       "done": false,
-      "note": "Gegend: Venloer Straße in Ehrenfeld. Bummeln, Vintage-Läden und Street Food, viele Imbisse an der Straße, dort spontan etwas aussuchen.",
-      "place": "Venloer Straße, 50823 Köln"
+      "place": "Schildergasse, 50667 Köln",
+      "note": "Kölns meistbesuchte Einkaufsstraße, samstags sehr voll. Unterwegs sehenswert: das Weltstadthaus (Glasbau, sieht aus wie ein Wal) und die Antoniterkirche mitten auf der Straße mit dem „Schwebenden“ Engel von Ernst Barlach, gut für eine ruhige Pause. Snack unterwegs, ca. 10 € pro Person. Läden meist bis 20 Uhr."
+    },
+    {
+      "id": "sa-10",
+      "day": "sa",
+      "time": "15:00",
+      "title": "Hohe Straße und Altstadt",
+      "cat": "stadt",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "place": "Alter Markt, 50667 Köln",
+      "note": "Am Ende der Schildergasse links in die Hohe Straße Richtung Dom. Abstecher nach rechts über die Gürzenichstraße zum Alter Markt: Historisches Rathaus, Groß St. Martin und die Figuren Tünnes und Schäl (Tünnes' Nase reiben bringt Glück). Kurzer Blick auf den Rhein, dann durch die Gassen zum Dom."
+    },
+    {
+      "id": "sa-11",
+      "day": "sa",
+      "time": "15:35",
+      "title": "Kölner Dom",
+      "cat": "kultur",
+      "status": "fix",
+      "cost": 0,
+      "done": false,
+      "place": "Kölner Dom, Domkloster 4, 50667 Köln",
+      "note": "Eintritt frei, drinnen ca. 15 Minuten. Während Gottesdiensten ist das Herumlaufen eingeschränkt. Zurück zum Hotel mit der Bahn ab Dom/Hauptbahnhof: oben auf „Zum Hotel navigieren“ tippen. Euer 24h-Ticket von Freitag ist vermutlich schon abgelaufen."
     },
     {
       "id": "sa-04",
