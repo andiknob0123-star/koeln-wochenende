@@ -99,13 +99,13 @@
       "cat": "essen",
       "status": "offen",
       "cost": 3,
-      "done": false,
+      "done": true,
       "note": "Mit der Küche im Zimmer selbst frühstücken. Einkauf am Freitag (siehe Offen). Geschätzt 3 € pro Person. Alternative: Café oder Bäcker in der Nähe."
     },
     {
       "id": "sa-02",
       "day": "sa",
-      "time": "11:30",
+      "time": "13:30",
       "title": "Ehrenfeld: Venloer Straße und Street Food",
       "cat": "essen",
       "status": "offen",
@@ -113,18 +113,6 @@
       "done": false,
       "note": "Gegend: Venloer Straße in Ehrenfeld. Bummeln, Vintage-Läden und Street Food, viele Imbisse an der Straße, dort spontan etwas aussuchen.",
       "place": "Venloer Straße, 50823 Köln"
-    },
-    {
-      "id": "sa-03",
-      "day": "sa",
-      "time": "13:30",
-      "title": "Bowling im West Bowling",
-      "cat": "action",
-      "status": "offen",
-      "cost": 19,
-      "done": false,
-      "note": "West Bowling, Melatengürtel 21: die größere Anlage mit mehr Fun-Faktor, 24 Bahnen, 36 m LED-Wand, Arcade und Billard. Preis noch erfragen (früher gefunden: 49 € pro Bahn und Stunde plus 3 € Schuhe, also ca. 19 € pro Person). Bahn vorher reservieren.",
-      "place": "West Bowling, Melatengürtel 21, Köln"
     },
     {
       "id": "sa-04",
@@ -308,12 +296,6 @@
       "id": "t-02",
       "created": 2,
       "text": "Parken: Hotel nach Rabatt fragen oder Tagespreis Rotonda prüfen",
-      "done": false
-    },
-    {
-      "id": "t-05",
-      "created": 3,
-      "text": "West Bowling anrufen (laut Verzeichnis 0221 95424411): Preis erfragen, Bahn für Sa 13:30 reservieren",
       "done": false
     },
     {
