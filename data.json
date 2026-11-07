@@ -28,8 +28,8 @@
       "status": "offen",
       "cost": null,
       "done": false,
-      "note": "Vorschlag: Tiefgarage Rotonda, Pantaleonswall 27, Höhe 1,90 m, 5 € pro 2 Std. Einen Tageshöchstpreis habe ich nicht gefunden. Das Hotel nach einem Rabatt oder einem günstigeren Parkplatz fragen. Danach bleibt das Auto stehen.",
-      "place": "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln"
+      "note": "Auto steht in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel.",
+      "place": "Stolzestraße 16, 50674 Köln"
     },
     {
       "id": "fr-03",
@@ -106,15 +106,16 @@
       "id": "sa-02",
       "day": "sa",
       "time": "13:45",
-      "title": "Loslaufen: Hotel zum Neumarkt",
+      "title": "Loslaufen: Hotel, Auto, Neumarkt",
       "cat": "stadt",
       "status": "fix",
       "cost": 0,
       "done": false,
       "place": "Neumarkt, 50667 Köln",
-      "note": "Zu Fuß ca. 15 Minuten vom Hotel. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse.",
+      "note": "Erst kurz zum Auto (Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel), dann ca. 20 Minuten zum Neumarkt. Am Neumarkt: die romanische Kirche St. Aposteln und die Neumarkt Galerie (Einkaufszentrum). Von hier beginnt die Schildergasse.",
       "walk": [
         "Pantaleonswall 31, 50676 Köln",
+        "50.925180,6.938366",
         "St. Aposteln, Neumarkt 30, 50667 Köln",
         "Antoniterkirche, Schildergasse 57, 50667 Köln",
         "Alter Markt, 50667 Köln",
@@ -166,7 +167,7 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Ausruhen, duschen und schon für den Club umziehen. Wer noch etwas aus dem Auto braucht: Die Tiefgarage Rotonda (Pantaleonswall 27) liegt direkt neben dem Hotel und hat rund um die Uhr offen. Parkticket mitnehmen. Danach geht es ohne Zwischenstopp im Hotel weiter: Abendessen, Glühgarten und Club in Ehrenfeld.",
+      "note": "Ausruhen, duschen und schon für den Club umziehen. Danach geht es ohne Zwischenstopp im Hotel weiter: Abendessen, Glühgarten und Club in Ehrenfeld.",
       "place": "Pantaleonswall 31, 50676 Köln"
     },
     {
@@ -237,8 +238,8 @@
       "status": "fix",
       "cost": 0,
       "done": false,
-      "note": "Tiefgarage Rotonda. Ticket für die Ausfahrt bereithalten.",
-      "place": "Tiefgarage Rotonda, Pantaleonswall 27, 50676 Köln"
+      "note": "Auto steht in der Stolzestraße 16, ca. 8 Minuten zu Fuß vom Hotel (Pantaleonswall 31).",
+      "place": "Stolzestraße 16, 50674 Köln"
     },
     {
       "id": "so-03",
@@ -327,7 +328,7 @@
     {
       "id": "t-02",
       "created": 2,
-      "text": "Parken: Hotel nach Rabatt fragen oder Tagespreis Rotonda prüfen",
+      "text": "Parken Stolzestraße 16: Schilder prüfen, ob ein Parkschein nötig ist und wie lange er gilt",
       "done": false
     },
     {
